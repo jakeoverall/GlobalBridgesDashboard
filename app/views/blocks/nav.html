@@ -1,0 +1,186 @@
+<!-- first -->
+<ul class="nav">
+  <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+    <span>Navigation</span>
+  </li>
+  <li>
+    <a ui-sref="secure.dashboard">
+      <i class="glyphicon glyphicon-stats icon"></i>
+      <span class="font-bold">Dashboard</span>
+    </a>
+  </li>
+  <li>
+    <a ui-sref="secure.calendar">
+      <i class="glyphicon glyphicon-calendar icon"></i>
+      <span class="font-bold">Club Calendar</span>
+    </a>
+  </li>
+  <li>
+    <a ui-sref="secure.mail.list">
+      <b class="badge bg-warning pull-right">9</b>
+      <i class="glyphicon glyphicon-envelope icon"></i>
+      <span class="font-bold">Messages</span>
+    </a>
+  </li>
+  <li class="line dk"></li>
+
+  <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+    <span>Miscellaneous</span>
+  </li>
+  <li>
+    <a href class="auto">
+      <span class="pull-right text-muted">
+        <i class="fa fa-fw fa-angle-right text"></i>
+        <i class="fa fa-fw fa-angle-down text-active"></i>
+      </span>
+      <i class="glyphicon glyphicon-certificate icon"></i>
+      <span class="font-bold">Meeting</span>
+    </a>
+    <ul class="nav nav-sub dk">
+      <li class="nav-sub-header">
+        <a href>
+          <span>Meeting</span>
+        </a>
+      </li>
+      <li>
+        <a ui-sref="secure.meeting">
+          <span>Members</span>
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href class="auto">
+      <span class="pull-right text-muted">
+        <i class="fa fa-fw fa-angle-right text"></i>
+        <i class="fa fa-fw fa-angle-down text-active"></i>
+      </span>
+      <i class="glyphicon glyphicon-user icon"></i>
+      <span class="font-bold">Members</span>
+    </a>
+    <ul class="nav nav-sub dk">
+      <li class="nav-sub-header">
+        <a href>
+          <span>Members</span>
+        </a>
+      </li>
+      <li>
+        <a ui-sref="secure.profile">
+          <span>Your Profile</span>
+        </a>
+      </li>
+      <li>
+        <a ui-sref="secure.threads">
+          <span>Forums</span>
+        </a>
+      </li>
+      <li>
+        <a ui-sref="secure.search">
+          <span>Search Members</span>
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href class="auto">
+      <span class="pull-right text-muted">
+        <i class="fa fa-fw fa-angle-right text"></i>
+        <i class="fa fa-fw fa-angle-down text-active"></i>
+      </span>
+      <i class="glyphicon glyphicon-th-list icon"></i>
+      <span class="font-bold">Committees</span>
+    </a>
+    <ul class="nav nav-sub dk">
+      <li class="nav-sub-header">
+        <a href>
+          <span>Committees</span>
+        </a>
+      </li>
+      <li>
+        <a ui-sref="secure.profile">
+          <span>Join a Committee</span>
+        </a>
+      </li>
+      <li>
+        <a ui-sref="secure.tasks">
+          <span>Your Committee</span>
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href class="auto">
+      <span class="pull-right text-muted">
+        <i class="fa fa-fw fa-angle-right text"></i>
+        <i class="fa fa-fw fa-angle-down text-active"></i>
+      </span>
+      <i class="glyphicon glyphicon-credit-card icon"></i>
+      <span id="purchase" class="font-bold">Pay Club Dues</span>
+    </a>
+    <script>
+      var handler = StripeCheckout.configure({
+        key: 'pk_test_ihN5R3MvYqpVOF2yDdgvDz4U',
+        image: 'img/a0.jpg',
+        token: function(token) {
+          // Use the token to create the charge with a server-side script.
+          // You can access the token ID with `token.id`
+        }
+      });
+
+      document.getElementById('purchase').addEventListener('click', function(e) {
+        // Open Checkout with further options
+        handler.open({
+          name: 'Global Bridges Rotary Club',
+          description: 'Quarterly Dues ($100.00)',
+          amount: 10000
+        });
+        e.preventDefault();
+      });
+    </script>
+  </li>
+  <li>
+    <a href class="auto">      
+      <span class="pull-right text-muted">
+        <i class="fa fa-fw fa-angle-right text"></i>
+        <i class="fa fa-fw fa-angle-down text-active"></i>
+      </span>
+      <i class="glyphicon glyphicon-folder-open"></i>
+      <span class="font-bold">About Us</span>
+    </a>
+    <ul class="nav nav-sub dk">
+      <li class="nav-sub-header">
+        <a href>
+          <span>About Us</span>
+        </a>
+      </li>
+      <li>
+        <a ui-sref="secure.profile">
+          <span>Our Club Story</span>
+        </a>
+      </li>
+      <li>
+        <a ui-sref="secure.profile">
+          <span>Members Handbook</span>
+        </a>
+      </li>
+      <li>
+        <a ui-sref="secure.profile">
+          <span>Club Constitution</span>
+        </a>
+      </li>
+      <li>
+        <a ui-sref="secure.profile">
+          <span>Club By-Laws</span>
+        </a>
+      </li>
+      <li>
+        <a ui-sref="secure.profile">
+          <span>Club Policies</span>
+        </a>
+      </li>
+    </ul>
+  </li>
+
+  <li class="line dk hidden-folded"></li>
+</ul>
+<!-- / third -->

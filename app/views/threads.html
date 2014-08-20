@@ -1,0 +1,68 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Forums</h1>
+</div>
+<div class="wrapper b-b bg">
+    <button class="btn btn-sm btn-default pull-right visible-sm visible-xs" ui-toggle-class="show" target="#email-menu"><i class="fa fa-bars"></i></button>
+    <a ui-sref="secure.compose" class="btn btn-sm btn-danger w-xs font-bold">Create Thread</a>
+</div>
+<div class="wrapper-md">
+  <div class="row">
+    <div class="col-sm-11">
+      <div class="blog-post">                   
+        <div class="panel" ng-repeat="thread in threads">
+          <div class="wrapper-lg">
+            <h2 class="m-t-none"><a ui-sref="secure.thread({threadId: thread.$id})">{{ thread.title }}</a></h2>
+            <div>
+              <p>{{ thread.text }}</p>
+            </div>
+            <div class="line line-lg b-b b-light"></div>
+            <div class="text-muted">
+              <i class="fa fa-user text-muted"></i> by <a href class="m-r-sm">{{ thread.username }}</a>
+              <!-- <a href class="m-l-sm"><i class="fa fa-comment-o text-muted"></i> 2 comments</a> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center m-t-lg m-b-lg">
+        <ul class="pagination pagination-md">
+          <li><a href><i class="fa fa-chevron-left"></i></a></li>
+          <li class="active"><a href>1</a></li>
+          <li><a href>2</a></li>
+          <li><a href>3</a></li>
+          <li><a href>4</a></li>
+          <li><a href>5</a></li>
+          <li><a href><i class="fa fa-chevron-right"></i></a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- <div class="col-sm-3">
+      <h5 class="font-bold">Categories</h5>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <a href>
+            <span class="badge pull-right">15</span>
+            Photograph
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href>
+            <span class="badge pull-right">30</span>
+            Life style
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href>
+            <span class="badge pull-right">9</span>
+            Food
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href>
+            <span class="badge pull-right">4</span>
+            Travel world
+          </a>
+        </li>
+      </ul>
+    </div> -->
+  </div>
+</div>

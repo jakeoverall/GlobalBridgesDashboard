@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="app">
+<head>
+  <meta charset="utf-8" />
+  <title>Global Bridges</title>
+  <meta name="description" content="app, web app, responsive, responsive layout, admin, admin panel, admin dashboard, flat, flat ui, ui kit, AngularJS, ui route, charts, widgets, components" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <link rel="stylesheet" href="styles/bootstrap.css" type="text/css" />
+  <link rel="stylesheet" href="styles/animate.css" type="text/css" />
+  <link rel="stylesheet" href="styles/font-awesome.min.css" type="text/css" />
+  <link rel="stylesheet" href="styles/simple-line-icons.css" type="text/css" />
+  <link rel="stylesheet" href="styles/font.css" type="text/css" />
+  <link rel="stylesheet" href="styles/app.css" type="text/css" />
+</head>
+<body ng-controller="AppCtrl">
+  <div class="app" id="app" ng-class="{'app-header-fixed':app.settings.headerFixed, 'app-aside-fixed':app.settings.asideFixed, 'app-aside-folded':app.settings.asideFolded}" ui-view></div>
+
+  <!-- Environment vars attached to window.env -->
+  <script src="env.js"></script>
+
+  <!-- jQuery -->
+  <script src="js/jquery/jquery.min.js"></script>
+  <!-- Angular -->
+  <script src="js/angular/angular.min.js"></script>
+  <script src="js/angular/angular-cookies.min.js"></script>
+  <script src="js/angular/angular-animate.min.js"></script>
+  <script src="js/angular/angular-ui-router.min.js"></script>
+  <script src="js/angular/angular-translate.js"></script>
+  <script src="js/angular/ngStorage.min.js"></script>
+  <script src="js/angular/ui-load.js"></script>
+  <script src="js/angular/ui-jq.js"></script>
+  <script src="js/angular/ui-validate.js"></script>
+  <script src="js/angular/ui-bootstrap-tpls.min.js"></script>
+  <script src="https://js.stripe.com/v1/"></script>
+  <script src="https://checkout.stripe.com/checkout.js"></script>
+
+  <!-- build:js scripts/vendor.js -->
+  <script src="bower_components/angular-route/angular-route.min.js"></script>
+  <script src="bower_components/firebase/firebase.js"></script>
+  <script src="bower_components/angularfire/dist/angularfire.min.js"></script>
+  <script src="bower_components/firebase-simple-login/firebase-simple-login.js"></script>
+  <script src="bower_components/toastr/toastr.min.js"></script>
+  <script src="scripts/controllers/tasks.js"></script>
+  <script src="scripts/controllers/task.js"></script>
+  <script src="scripts/controllers/profile.js"></script>
+  <!-- endbuild -->
+  
+  <!-- App -->
+  <script src="js/app.js"></script>
+  <script src="js/tasks.js"></script>
+  <script src="js/filters/url.js"></script>
+  <script src="js/filters/filters.js"></script>
+  <script src="scripts/controllers/controllers.js"></script>
+  <script src="scripts/controllers/login.js"></script>
+  <script src="scripts/directives/directives.js"></script>
+  <script src="scripts/services/task-service.js"></script>
+  <script src="scripts/controllers/secure.js"></script>
+  <script src="scripts/controllers/threads.js"></script>
+  <script src="scripts/controllers/thread.js"></script>
+  <script src="scripts/services/user-service.js"></script>
+  <script src="scripts/services/thread-service.js"></script>
+  <script src="scripts/services/environment-service.js"></script>
+  <!-- Lazy loading -->
+</body>
+</html>

@@ -1,0 +1,26 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Compose Thread</h1>
+</div>
+<div>
+  <div class="wrapper">
+    <form name="newThreadForm" class="form-horizontal m-t-lg">
+      <div class="form-group">
+        <label class="col-lg-2 control-label">Thread Title</label>
+        <div class="col-lg-8">
+          <input type="text" class="form-control" ng-model="newThreadTitle">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-2 control-label">Thread Text</label>
+        <div class="col-lg-8">
+          <textarea type="text" rows="5" class="form-control" ng-model="newThreadText"></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-8 col-lg-offset-2">
+          <button ng-disabled="newThreadForm.$invalid" ng-click="createThread(user.username, newThreadTitle, newThreadText)" class="btn btn-sm btn-danger w-xs font-bold">Add Thread</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
