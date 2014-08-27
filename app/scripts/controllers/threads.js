@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app.controllers.threads', [])
-  .controller('ThreadsCtrl', function ($scope, threadsRef, $state) {
+  .controller('ThreadsCtrl', function ($scope, threadsRef, threadRef, $state) {
 
     $scope.threads = threadsRef.$asArray();
 

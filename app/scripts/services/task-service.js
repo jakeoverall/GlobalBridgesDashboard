@@ -9,7 +9,7 @@ angular.module('app.services.task', [])
         return $firebase(new Firebase(firebaseUrl + '/tasks'));
       },
 
-      getTask: function (threadId) {
+      getTask: function (taskId) {
         return $firebase(new Firebase(firebaseUrl + '/tasks/' + taskId));
       }
       

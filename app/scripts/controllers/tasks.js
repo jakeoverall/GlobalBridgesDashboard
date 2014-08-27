@@ -16,7 +16,7 @@ angular.module('app.controllers.tasks', [])
         text: text
       });
       $state.go('secure.tasks');
-    }
+    };
 
   });
   

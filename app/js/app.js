@@ -97,6 +97,9 @@ var app = angular.module('app', [
               resolve: {
                 threadsRef: function (ThreadService) {
                   return ThreadService.getThreads();
+                },
+                threadRef: function (ThreadService, $stateParams) {
+                  return ThreadService.getThread($stateParams.threadId);
                 }
               }
             })
@@ -180,6 +183,10 @@ var app = angular.module('app', [
             .state('secure.search', {
                 url: '/search',
                 templateUrl: 'views/search.html'
+            })
+            .state('secure.signup', {
+                url: '/signup',
+                templateUrl: 'views/signup.html'
             })
 
             // fullCalendar
