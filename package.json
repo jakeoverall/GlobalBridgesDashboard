@@ -1,7 +1,16 @@
 {
   "name": "rotarydashboard",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.8.8",
+    "firebase": "^1.0.21",
+    "grunt-s3": "^0.2.0-alpha.3",
+    "mandrill-api": "^1.0.40",
+    "newrelic": "^1.11.0",
+    "q": "^1.0.1",
+    "stripe": "^2.8.0",
+    "underscore": "^1.7.0"
+  },
   "devDependencies": {
     "grunt": "^0.4.1",
     "grunt-autoprefixer": "^0.7.3",

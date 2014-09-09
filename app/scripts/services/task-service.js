@@ -11,6 +11,10 @@ angular.module('app.services.task', [])
 
       getTask: function (taskId) {
         return $firebase(new Firebase(firebaseUrl + '/tasks/' + taskId));
+      },
+
+      getComments: function (taskId) {
+        return $firebase(new Firebase(firebaseUrl + '/tasks/' + taskId + '/comments'));
       }
       
     }

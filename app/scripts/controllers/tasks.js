@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app.controllers.tasks', [])
-  .controller('TasksCtrl', function ($scope, tasksRef, $state) {
+  .controller('TasksCtrl', function ($scope, tasksRef, taskRef, $state) {
 
     $scope.tasks = tasksRef.$asArray();
 
@@ -17,6 +17,10 @@ angular.module('app.controllers.tasks', [])
       });
       $state.go('secure.tasks');
     };
+
+    // $scope.removeTask = function (id) {
+    //   $scope.tasks.$remove(id);
+    // };
 
   });
   

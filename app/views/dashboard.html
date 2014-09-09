@@ -23,48 +23,38 @@
               </div>
               <div class="panel-body" ui-jq="slimScroll" ui-options="{height:'250px', size:'8px'}">
                 <div class="media">
-                  <span class="pull-left thumb-sm"><img src="img/a2.jpg" alt="..."></span>
+                  <span class="pull-left thumb-sm avatar m-r"><img src="img/a4.jpg" alt="..."></span>
                   <div class="media-body">
                     <div class="pull-right text-center text-muted">
                       <strong class="h4">12:18</strong><br>
                       <small class="label bg-light">pm</small>
                     </div>
-                    <a href class="h4">Bootstrap 3 released</a>
-                    <small class="block"><a href class="">John Smith</a> <span class="label label-success">Circle</span></small>
-                    <small class="block m-t-sm">Sleek, intuitive, and powerful mobile-first front-end framework for faster and easier web development.</small>
+                    <a href class="h4">Lorem Ipsum</a>
+                    <small class="block"><a href class="">John Kim</a> <span class="label label-success"></span></small>
+                    <small class="block m-t-sm">Lorem ipsum dolor</small>
                   </div>
                 </div>
                 <div class="line pull-in"></div>
                 <div class="media">
-                  <span class="pull-left thumb-sm"><i class="fa fa-file-o fa-3x text-muted"></i></span>                
+                  <span class="pull-left thumb-sm avatar m-r"><img src="img/a4.jpg" alt="..."></span>
                   <div class="media-body">
                     <div class="pull-right text-center text-muted">
-                      <strong class="h4">17</strong><br>
-                      <small class="label bg-light">feb</small>
+                      <strong class="h4">12:18</strong><br>
+                      <small class="label bg-light">pm</small>
                     </div>
-                    <a href class="h4">Bootstrap documents</a>
-                    <small class="block"><a href>John Smith</a> <span class="label label-info">Friends</span></small>
-                    <small class="block m-t-sm">There are a few easy ways to quickly get started with Bootstrap, each one appealing to a different skill level and use case. Read through to see what suits your particular needs.</small>
+                    <a href class="h4">Lorem Ipsum</a>
+                    <small class="block"><a href class="">John Park</a> <span class="label label-success"></span></small>
+                    <small class="block m-t-sm">Lorem ipsum dolor</small>
                   </div>
                 </div>
                 <div class="line pull-in"></div>
-                <div class="media">
-                  <div class="media-body">
-                    <div class="pull-right text-center text-muted">
-                      <strong class="h4">09</strong><br>
-                      <small class="label bg-light">jan</small>
-                    </div>
-                    <a href class="h4 text-success">Mobile first html/css framework</a>
-                    <small class="block m-t-sm">Bootstrap, Ratchet</small>
-                  </div>
-                </div>
+               
               </div>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="panel panel-default">
               <div class="panel-heading b-b b-light">
-                <span class="badge bg-warning pull-right">10</span>
                 <a href class="font-bold">President's Messages</a>
               </div>
               <ul class="list-group list-group-lg no-bg auto">
@@ -74,8 +64,8 @@
                     <i class="on b-white bottom"></i>
                   </span>
                   <span class="clear">
-                    <span>Chris Fox</span>
-                    <small class="text-muted clear text-ellipsis">What's up, buddy</small>
+                    <span>Kevyn Aucoin</span>
+                    <small class="text-muted clear text-ellipsis">Today I choose life. Every morning when I wake up I can choose joy, happiness, negativity, pain... To feel the freedom that comes from being able to continue to make mistakes and choices - today I choose to feel life, not to deny my humanity but embrace it.</small>
                   </span>
                 </li>
                 <li class="list-group-item clearfix">
@@ -84,8 +74,8 @@
                     <i class="on b-white bottom"></i>
                   </span>
                   <span class="clear">
-                    <span>Amanda Conlan</span>
-                    <small class="text-muted clear text-ellipsis">Come online and we need talk about the plans that we have discussed</small>
+                    <span>Norman Vincent Peale</span>
+                    <small class="text-muted clear text-ellipsis">Change your thoughts and you change your world.</small>
                   </span>
                 </li>
                 <li class="list-group-item clearfix">
@@ -94,18 +84,8 @@
                     <i class="busy b-white bottom"></i>
                   </span>
                   <span class="clear">
-                    <span>Dan Doorack</span>
-                    <small class="text-muted clear text-ellipsis">Hey, Some good news</small>
-                  </span>
-                </li>
-                <li class="list-group-item clearfix">
-                  <span class="pull-left thumb-sm avatar m-r">
-                    <img src="img/a7.jpg" alt="...">
-                    <i class="away b-white bottom"></i>
-                  </span>
-                  <span class="clear">
-                    <span>Lauren Taylor</span>
-                    <small class="text-muted clear text-ellipsis">Nice to talk with you.</small>
+                    <span>Milton Berle</span>
+                    <small class="text-muted clear text-ellipsis">If opportunity doesn't knock, build a door.</small>
                   </span>
                 </li>
               </ul>
@@ -120,7 +100,7 @@
             </div>       
           </div>
         </div>
-      <div class="panel panel-default" data-ng-controller="taskCtrl">
+      <!-- <div class="panel panel-default" data-ng-controller="taskCtrl">
         <div class="row">
             <div class="col-md-12 no-border-xs">
               <div class="panel-heading b-b b-light">
@@ -128,10 +108,6 @@
                 <a href class="font-bold">My Tasks</a>
               </div>
                 <section class="task-container">
-                        <!-- This is the "What needs to be done" input -->
-                          
-                          <!-- End "What needs to be done" -->
-                          <!-- These are the tabs -->
                           <section>
                               <ul class="filters list-inline nav nav-tabs">
                                   <li data-ng-class="{active: statusFilter == ''}">
@@ -154,7 +130,6 @@
                                   </li>
                               </ul>
                           </section>
-                          <!-- End Tabs -->
                           <section class="col-md-11">
                               <ul class="task-list list-unstyled">
                                   <li data-ng-repeat="task in tasks | filter:statusFilter track by $index" 
@@ -185,7 +160,7 @@
                   </section>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   <!-- / main -->

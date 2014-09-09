@@ -33,7 +33,8 @@ var app = angular.module('app', [
     'app.services.environment',
     'app.services.thread',
     'app.services.task',
-    'app.services.user'
+    'app.services.user',
+    'app.services.underscore'
   ])
 .run(
   [          '$rootScope', '$state', '$stateParams',
@@ -56,8 +57,12 @@ var app = angular.module('app', [
         app.constant   = $provide.constant;
 
         $urlRouterProvider
-            .otherwise('/register');
-        $stateProvider            
+            .otherwise('/home');
+        $stateProvider
+            .state('home', {
+              url: '/home',
+              templateUrl: 'views/home.html'
+            })            
             .state('login', {
               url: '/login',
               templateUrl: 'views/login.html',
@@ -123,6 +128,9 @@ var app = angular.module('app', [
               resolve: {
                 threadsRef: function (ThreadService) {
                   return ThreadService.getThreads();
+                },
+                threadRef: function (ThreadService, $stateParams) {
+                  return ThreadService.getThread($stateParams.threadId);
                 }
               }
             })
@@ -154,6 +162,9 @@ var app = angular.module('app', [
                 resolve: {
                  tasksRef: function (TaskService) {
                     return TaskService.getTasks();
+                 },
+                 taskRef: function (TaskService, $stateParams) {
+                  return TaskService.getTask($stateParams.taskId);
                  }
                 }
             })
@@ -183,6 +194,19 @@ var app = angular.module('app', [
             .state('secure.search', {
                 url: '/search',
                 templateUrl: 'views/search.html'
+            })
+            .state('secure.todo', {
+                url: '/todo',
+                templateUrl: 'views/todo.html',
+                controller: 'TodoCtrl',
+                resolve: {
+                 tasksRef: function (TaskService) {
+                    return TaskService.getTasks();
+                 },
+                 taskRef: function (TaskService, $stateParams) {
+                      return TaskService.getTask($stateParams.taskId);
+                 }
+                }
             })
             .state('secure.signup', {
                 url: '/signup',

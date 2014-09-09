@@ -8,26 +8,24 @@
 <div class="wrapper-md">
   <div class="row">
     <div class="col-sm-11">
-      <div>                   
-        <div class="panel" ng-repeat="task in tasks">
-          <div class="wrapper-lg">
-            <h2 class="m-t-none"><a ui-sref="secure.task({taskId: task.$id})">{{ task.title }}</a></h2>
-            <div>
-              <p>{{ task.text }}</p>
+      <div>
+        <ul ui-jq="sortable" class="list-group gutter list-group-lg list-group-sp">
+          <li ng-repeat="task in tasks" class="list-group-item bg-primary">
+            <span class="pull-right">
+              <a ui-sref="secure.task({taskId: task.$id})"><i class="fa fa-pencil fa-fw m-r-xs"></i></a>
+            </span>
+            <span class="pull-left"><i class="fa fa-sort text-muted fa m-r-sm"></i> </span>
+            <div class="clear">
+              <a href>{{task.title}}</a>
             </div>
-            <div class="line line-lg b-b b-light"></div>
-            <div class="text-muted">
-              <i class="fa fa-user text-muted"></i> by <a href class="m-r-sm">{{ task.username }}</a>
-              <!-- <a href class="m-l-sm"><i class="fa fa-comment-o text-muted"></i> 2 comments</a> -->
-            </div>
-          </div>
-        </div>
+          </li>
+        </ul>                  
       </div>
     </div>
   </div>
 </div>
 
-<div class="wrapper-md">
+<!-- <div class="wrapper-md">
   <div class="row">
     <div class="col-sm-10" data-ng-controller="taskCtrl">
       <section class="task-container">
@@ -56,7 +54,7 @@
                 </section>
                
                 <section class="col-md-11">
-                    <ul class="task-list list-unstyled">
+                    <ul ui-jq="sortable" class="task-list list-unstyled">
                         <li data-ng-repeat="task in tasks | filter:statusFilter track by $index" 
                             data-ng-class="{completed: task.completed, editing: task == editedTask}">
                             <span class="view">
@@ -65,6 +63,7 @@
                                        data-ng-model="task.completed"
                                        data-ng-change="completed(task)">
                                 <label data-ng-dblclick="edit(task)">{{task.title}}</label>
+                              
                                 <span class="glyphicon glyphicon-pencil"
                                       data-ng-click="edit(task)"></span>
                                 <span class="glyphicon glyphicon-remove"
@@ -110,4 +109,4 @@
         </section>
     </div>
   </div>
-</div>
+</div> -->
