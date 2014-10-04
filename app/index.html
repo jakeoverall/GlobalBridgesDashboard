@@ -42,6 +42,11 @@
   <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
   <script src="https://checkout.stripe.com/checkout.js"></script>
 
+  <!-- Libs -->
+  <script src="js/libs/moment.min.js"></script>
+  <script src="js/libs/underscore.js"></script>
+  <script src="js/libs/oauth.js"></script>
+
   <!-- build:js scripts/vendor.js -->
   <script src="bower_components/angular-route/angular-route.min.js"></script>
   <script src="bower_components/firebase/firebase.js"></script>
@@ -50,6 +55,10 @@
   <script src="bower_components/toastr/toastr.min.js"></script>
   <script src="scripts/services/underscore.js"></script>
 
+  <script src="scripts/directives/utilities.js"></script>
+  <script src="scripts/services/notification-service.js"></script>
+  <script src="scripts/controllers/twitter.js"></script>
+  <script src="scripts/services/twitter-service.js"></script>
   <!-- endbuild -->
   
   <!-- App -->
@@ -67,9 +76,14 @@
   <script src="scripts/services/user-service.js"></script>
   <script src="scripts/services/thread-service.js"></script>
   <script src="scripts/services/environment-service.js"></script>
+  <script src="scripts/services/admin-service.js"></script>
   <script src="scripts/controllers/tasks.js"></script>
   <script src="scripts/controllers/task.js"></script>
   <script src="scripts/controllers/profile.js"></script>
+  <script src="scripts/controllers/words.js"></script>
+  <script src="scripts/controllers/word.js"></script>
+  <script src="scripts/controllers/twitter.js"></script>  
+  <script src="scripts/services/twitter-service.js"></script>
   <!-- Lazy loading -->
 </body>
 </html>

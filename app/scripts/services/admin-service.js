@@ -11,6 +11,10 @@ angular.module('app.services.admin', [])
 
       getWord: function (wordId) {
         return $firebase(new Firebase(firebaseUrl + '/content/words/' + wordId));
+      },
+
+      getDrafts: function (wordId) {
+        return $firebase(new Firebase(firebaseUrl + '/content/words/' + wordId + '/drafts'));
       }
       
     }

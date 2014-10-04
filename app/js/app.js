@@ -28,13 +28,17 @@ var app = angular.module('app', [
     'app.controllers.threads',
     'app.controllers.tasks',
     'app.controllers.task',
+    'app.controllers.words',
+    'app.controllers.word',
     'app.controllers.profile',
     // Services
     'app.services.environment',
     'app.services.thread',
     'app.services.task',
     'app.services.user',
-    'app.services.underscore'
+    'app.services.admin',
+    'app.services.underscore',
+    'app.services.twitterApp'
   ])
 .run(
   [          '$rootScope', '$state', '$stateParams',
@@ -153,7 +157,16 @@ var app = angular.module('app', [
             })
             .state('secure.meeting', {
                 url: '/meeting',
-                templateUrl: 'views/meeting.html'
+                templateUrl: 'views/meeting.html',
+                controller: 'WordCtrl',
+                resolve: {
+                  wordRef: function (AdminService, $stateParams) {
+                    return AdminService.getWord($stateParams.wordId);
+                  },
+                  draftsRef: function (AdminService, $stateParams) {
+                    return AdminService.getDrafts($stateParams.wordId);
+                  }
+                }
             })
             .state('secure.tasks', {
                 url: '/tasks',
@@ -194,6 +207,11 @@ var app = angular.module('app', [
             .state('secure.search', {
                 url: '/search',
                 templateUrl: 'views/search.html'
+            })
+            .state('secure.twitter', {
+                url: '/twitter',
+                templateUrl: 'views/twitter.html',
+                controller: 'TwitterCtrl'
             })
             .state('secure.todo', {
                 url: '/todo',
@@ -256,6 +274,31 @@ var app = angular.module('app', [
             .state('secure.mail.compose', {
                 url: '/compose',
                 templateUrl: 'views/mail.new.html'
+            })
+
+            //admin
+            .state('secure.admin', {
+              url: '/words',
+              templateUrl: 'views/admin-words.html',
+              controller: 'WordsCtrl',
+              resolve: {
+                wordsRef: function (AdminService) {
+                  return AdminService.getWords();
+                }
+              }
+            })
+            .state('secure.adminword', {
+              url: '/words/:wordId',
+              templateUrl: 'views/admin-word.html',
+              controller: 'WordCtrl',
+              resolve: {
+                wordRef: function (AdminService, $stateParams) {
+                  return AdminService.getWord($stateParams.wordId);
+                },
+                draftsRef: function (AdminService, $stateParams) {
+                  return AdminService.getDrafts($stateParams.wordId);
+                }
+              }
             })
     }
   ]

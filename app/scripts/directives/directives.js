@@ -46,6 +46,42 @@ angular.module('app.directives', ['ui.load'])
       }
     };
   }])
+  .directive('qvConfirm', function ($timeout) {
+    return {
+      restrict: 'A',
+      link: function postLink(scope, element, attrs) {
+        $timeout(function () {
+          var confirmations = attrs.confirmations ? scope.$eval(attrs.confirmations) : ['Click to confirm'],
+            buttonHtml = element.html(),
+            stack = confirmations.slice(0),
+            body = angular.element(document.body),
+            handleBodyClicks = function (e) {
+              if (e.target != element[0] && !angular.element.contains(element[0], e.target)) {
+                stack = confirmations.slice(0);
+                element.html(buttonHtml);
+                body.off('click', handleBodyClicks);
+              }
+            };
+
+          element.on('click', function () {
+
+
+            if (stack.length) {
+              element.text(stack.shift());
+              $timeout(function () { // Gotta skip the initial click that changed the content of the element
+                body.on('click', handleBodyClicks);
+              });
+
+            } else {
+              body.off('click', handleBodyClicks);
+              scope.$eval(attrs.qvConfirm);
+            }
+          });
+        });
+
+      }
+    };
+  })
   .directive('taskFocus', [
     '$timeout', function($timeout) {
       return {
