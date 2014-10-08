@@ -16,41 +16,18 @@
 
     <div class="wrapper-md">
       <div class="row">
-        {{published}}
           <div class="col-sm-6">
             <div class="panel panel-default">
               <div class="panel-heading b-b b-light">
                 <a href class="font-bold">Club News</a>
               </div>
               <ul class="list-group list-group-lg no-bg auto">
-                <li class="list-group-item clearfix">
-                  <span class="pull-left thumb-sm avatar m-r">
-                    <img src="img/a4.jpg" alt="...">
-                    <i class="on b-white bottom"></i>
-                  </span>
+                <li class="list-group-item clearfix" ng-repeat="item in news">
                   <span class="clear">
-                    <span>Kevyn Aucoin</span>
-                    <small class="text-muted clear text-ellipsis">Today I choose life. Every morning when I wake up I can choose joy, happiness, negativity, pain... To feel the freedom that comes from being able to continue to make mistakes and choices - today I choose to feel life, not to deny my humanity but embrace it.</small>
+                    <small class="text-muted clear text-ellipsis">{{ item.text.markdown }}</small>
                   </span>
-                </li>
-                <li class="list-group-item clearfix">
                   <span class="pull-left thumb-sm avatar m-r">
-                    <img src="img/a5.jpg" alt="...">
-                    <i class="on b-white bottom"></i>
-                  </span>
-                  <span class="clear">
-                    <span>Norman Vincent Peale</span>
-                    <small class="text-muted clear text-ellipsis">Change your thoughts and you change your world.</small>
-                  </span>
-                </li>
-                <li class="list-group-item clearfix">
-                  <span class="pull-left thumb-sm avatar m-r">
-                    <img src="img/a6.jpg" alt="...">
-                    <i class="busy b-white bottom"></i>
-                  </span>
-                  <span class="clear">
-                    <span>Milton Berle</span>
-                    <small class="text-muted clear text-ellipsis">If opportunity doesn't knock, build a door.</small>
+                    {{ item.text.created | date }}
                   </span>
                 </li>
               </ul>
@@ -70,34 +47,12 @@
                 <a href class="font-bold">President's Messages</a>
               </div>
               <ul class="list-group list-group-lg no-bg auto">
-                <li class="list-group-item clearfix">
-                  <span class="pull-left thumb-sm avatar m-r">
-                    <img src="img/a4.jpg" alt="...">
-                    <i class="on b-white bottom"></i>
-                  </span>
+                <li class="list-group-item clearfix" ng-repeat="item in messages">
                   <span class="clear">
-                    <span>Kevyn Aucoin</span>
-                    <small class="text-muted clear text-ellipsis">Today I choose life. Every morning when I wake up I can choose joy, happiness, negativity, pain... To feel the freedom that comes from being able to continue to make mistakes and choices - today I choose to feel life, not to deny my humanity but embrace it.</small>
+                    <small class="text-muted clear text-ellipsis">{{ item.text.markdown }}</small>
                   </span>
-                </li>
-                <li class="list-group-item clearfix">
                   <span class="pull-left thumb-sm avatar m-r">
-                    <img src="img/a5.jpg" alt="...">
-                    <i class="on b-white bottom"></i>
-                  </span>
-                  <span class="clear">
-                    <span>Norman Vincent Peale</span>
-                    <small class="text-muted clear text-ellipsis">Change your thoughts and you change your world.</small>
-                  </span>
-                </li>
-                <li class="list-group-item clearfix">
-                  <span class="pull-left thumb-sm avatar m-r">
-                    <img src="img/a6.jpg" alt="...">
-                    <i class="busy b-white bottom"></i>
-                  </span>
-                  <span class="clear">
-                    <span>Milton Berle</span>
-                    <small class="text-muted clear text-ellipsis">If opportunity doesn't knock, build a door.</small>
+                    {{ item.text.created | date }}
                   </span>
                 </li>
               </ul>

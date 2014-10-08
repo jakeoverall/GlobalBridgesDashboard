@@ -160,10 +160,12 @@ var app = angular.module('app', [
                   wordRef: function (AdminService, $stateParams) {
                     return AdminService.getWord($stateParams.wordId);
                   },
-                  publishedRef: function (AdminService) {
-                    return AdminService.getPublished();
+                  publishedNewsRef: function (AdminService) {
+                  return AdminService.getPublishedNews();
+                  },
+                  publishedMessagesRef: function (AdminService) {
+                    return AdminService.getPublishedMessages();
                   }
-
                 }
 
             })
