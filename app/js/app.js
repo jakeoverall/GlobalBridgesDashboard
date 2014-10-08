@@ -9,6 +9,7 @@ var app = angular.module('app', [
     'ui.router',
     'ngRoute', 
     'ui.bootstrap',
+    'ui.tree',
     'ui.load',
     'ui.jq',
     'ui.validate',
@@ -208,39 +209,31 @@ var app = angular.module('app', [
             .state('secure.tasks', {
                 url: '/tasks',
                 templateUrl: 'views/tasks.html',
-                controller: 'TasksCtrl',
-                resolve: {
-                 tasksRef: function (TaskService) {
-                    return TaskService.getTasks();
-                 },
-                 taskRef: function (TaskService, $stateParams) {
-                  return TaskService.getTask($stateParams.taskId);
-                 }
-                }
+                controller: 'TasksCtrl'
             })
-            .state('secure.task', {
-              url: '/task/:taskId',
-              templateUrl: 'views/task.html',
-              controller: 'TaskCtrl',
-              resolve: {
-                taskRef: function (TaskService, $stateParams) {
-                  return TaskService.getTask($stateParams.taskId);
-                },
-                commentsRef: function (TaskService, $stateParams) {
-                  return TaskService.getComments($stateParams.taskId);
-                }
-              }
-            })
-            .state('secure.newtask', {
-              url: '/newtask',
-              templateUrl: 'views/newtask.html',
-              controller: 'TasksCtrl',
-              resolve: {
-                tasksRef: function (TaskService) {
-                  return TaskService.getTasks();
-                }
-              }
-            })
+            // .state('secure.task', {
+            //   url: '/task/:taskId',
+            //   templateUrl: 'views/task.html',
+            //   controller: 'TaskCtrl',
+            //   resolve: {
+            //     taskRef: function (TaskService, $stateParams) {
+            //       return TaskService.getTask($stateParams.taskId);
+            //     },
+            //     commentsRef: function (TaskService, $stateParams) {
+            //       return TaskService.getComments($stateParams.taskId);
+            //     }
+            //   }
+            // })
+            // .state('secure.newtask', {
+            //   url: '/newtask',
+            //   templateUrl: 'views/newtask.html',
+            //   controller: 'TasksCtrl',
+            //   resolve: {
+            //     tasksRef: function (TaskService) {
+            //       return TaskService.getTasks();
+            //     }
+            //   }
+            // })
             .state('secure.search', {
                 url: '/search',
                 templateUrl: 'views/search.html',
@@ -258,19 +251,6 @@ var app = angular.module('app', [
                 url: '/twitter',
                 templateUrl: 'views/twitter.html',
                 controller: 'TwitterCtrl'
-            })
-            .state('secure.todo', {
-                url: '/todo',
-                templateUrl: 'views/todo.html',
-                controller: 'TodoCtrl',
-                resolve: {
-                 tasksRef: function (TaskService) {
-                    return TaskService.getTasks();
-                 },
-                 taskRef: function (TaskService, $stateParams) {
-                      return TaskService.getTask($stateParams.taskId);
-                 }
-                }
             })
             .state('secure.signup', {
                 url: '/signup',

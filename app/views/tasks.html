@@ -1,4 +1,116 @@
 <div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Committee Tasks</h1>
+</div>
+<hr>
+
+<div class="container-fluid" ng-controller="TasksCtrl">
+<script type="text/ng-template" id="items_renderer.html">
+  <label>
+      <span class="pull-left" style="margin-left:15px; margin-top:15px; margin-bottom:15px"><i class="fa fa-sort text-muted fa m-r-sm"></i> </span>
+      <span class="clear" style="margin-left:40px; margin-top:15px; margin-bottom:15px" ng-show="!item.editing">{{item.title}}</span>
+                <form class="form-horizontal" action="" ng-submit="doneEditing(item)" ng-show="item.editing" data-nodrag>
+                  <div class="form-group">
+                    <div class="col-lg-4 col-xs-5">
+                      <input style="margin-top:10px" type="text" class="form-control no-validate" ng-model="item.title" placeholder="Task title..." ng-keyup="cancelEdit($event, item)">
+                    </div>
+                    <div class="col-lg-4 col-xs-4">
+                      <div class="form-group">
+                          <input style="margin-top:10px" type="text" class="form-control no-validate" ng-model="item.label" placeholder="Task label..." ng-keyup="cancelEdit($event, item)">
+
+                  <div class="input-group-btn">
+                    <div class="btn-group" dropdown style="">
+                      <button type="button" class="btn btn-lg btn-default dropdown-toggle">
+                        <div class="label label-{{item.color||'primary'}} color-block"></div>
+                      </button>
+                      <ul class="dropdown-menu dropdown-colors" role="menu">
+                                  <li><span class="label label-success" ng-click="item.color='success'"></span></li>
+                                  <li><span class="label label-primary" ng-click="item.color='primary'"></span></li>
+                                  <li><span class="label label-warning" ng-click="item.color='warning'"></span></li>
+                                  <li><span class="label label-danger" ng-click="item.color='danger'"></span></li>
+                                  <li><span class="label label-info" ng-click="item.color='info'"></span></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                    </div>
+              <div class="col-lg-2 col-xs-3">
+                        
+                        <input style="margin-top:10px" type="submit" class="btn btn-primary btn-sm clear" value="Save" />
+                      </div>
+                  </div>
+                </form>
+  </label>
+  <div class="options todooptions pull-right">
+      <div class="btn-group" ng-show="!item.editing" style="margin-top:15px">
+          
+          <button data-nodrag class="btn btn-default btn-xs" ng-click="complete(this, item)"><i class="fa fa-fw fa-check"></i></button>
+          <button data-nodrag class="btn btn-default btn-xs" ng-click="edit(item)"><i class="fa fa-fw fa-pencil"></i></button>
+          <button data-nodrag class="btn btn-default btn-xs" ng-click="remove(this)"><i class="fa fa-fw fa-trash-o"></i></button>
+      </div>
+  </div>
+</script>
+
+  <div class="row">
+    <div class="col-xs-12">
+
+      <tabset panel-tabs="true" panel-class="panel-sky">
+        <panel-controls class="pull-right">
+          <button class="btn btn-primary btn-sm" ng-click="showForm=true;showTasksTab=true;showCompletedTab=false" style="margin-top: -5px;">Add Task</button>
+        </panel-controls>
+        <tab active="showTasksTab">
+          <tab-heading><i class="fa fa-tasks"></i> To-do <span class="badge badge-primary">{{tasks.length}}</span></tab-heading>
+                  <div>
+
+                    <form class="form-horizontal" name="create_task" ng-submit="newItem(newTaskTitle, newTaskLabelText, newTaskColor)" ng-show="showForm">
+                      <br>
+                      <div class="form-group">
+                        <div class="col-lg-8 col-md-7 col-sm-6 col-xs-5">
+                          <input type="text" class="form-control no-validate" ng-model="newTaskTitle" placeholder="Task title..." ng-keyup="cancelAdd($event)">
+                        </div>
+                        
+                        <div class="col-md-2 col-lg-1">
+                            <input
+                              class="btn btn-primary btn-block"
+                              value="Add"
+                              type="submit"
+                            />
+                        </div>
+                      </div>    
+                    </form>  
+                  </div>
+                  <div ui-tree="options" class="tasklist">
+                    <ol ui-tree-nodes ng-model="tasks" class="panel-tasks">
+                      <li
+                        ui-tree-node
+                        ui-tree-handle
+                        class="list-group-item"
+                        ng-repeat="item in tasks"
+                        ng-include="'items_renderer.html'"
+                      ></li>
+                    </ol>
+                  </div>
+        </tab>
+        <tab active="showCompletedTab">
+          <tab-heading><i class="fa fa-check"></i> Completed <span class="badge badge-success">{{tasksComplete.length}}</span></tab-heading>
+          <div class="tasklist">
+            <ol class="panel-tasks">
+              <li ng-repeat="item in tasksComplete" class="list-group-item">
+                  <span class="pull-right">
+                    <a href ng-click="incomplete(item, $index)"><i class="fa fa-undo fa-fw m-r-xs"></i></a>
+                  </span>
+                  <label>
+                    <span class="task-description">{{item.title}}</span>
+                  </label>
+              </li>
+            </ol>
+          </div>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div> <!-- container -->
+
+<!-- <div class="bg-light lter b-b wrapper-md">
   <h1 class="m-n font-thin h3">Committee</h1>
 </div>
 <div class="wrapper b-b bg">
@@ -23,7 +135,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <!-- <div class="wrapper-md">
   <div class="row">
