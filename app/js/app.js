@@ -33,6 +33,7 @@ var app = angular.module('app', [
     'app.controllers.word',
     'app.controllers.profile',
     'app.controllers.dashboard',
+    'app.controllers.signup',
     // 'app.controllers.calendar',
     // Services
     'app.services.environment',
@@ -43,7 +44,8 @@ var app = angular.module('app', [
     'app.services.underscore',
     'app.services.twitterApp',
     'app.services.members',
-    'app.services.calendar'
+    'app.services.calendar',
+    'app.services.signup'
   ])
 .run(
   [          '$rootScope', '$state', '$stateParams',
@@ -81,6 +83,16 @@ var app = angular.module('app', [
               url: '/register',
               templateUrl: 'views/register.html',
               controller: 'LoginCtrl'
+            })
+            .state('apply', {
+              url: '/apply',
+              templateUrl: 'views/signup.html',
+              controller: 'SignupCtrl',
+              resolve: {
+                applicantsRef: function (SignupService) {
+                  return SignupService.getApplicants();
+                }
+              }
             })
             .state('forgotpwd', {
                 url: '/forgotpwd',
@@ -253,10 +265,6 @@ var app = angular.module('app', [
                 url: '/twitter',
                 templateUrl: 'views/twitter.html',
                 controller: 'TwitterCtrl'
-            })
-            .state('secure.signup', {
-                url: '/signup',
-                templateUrl: 'views/signup.html'
             })
 
             // fullCalendar
