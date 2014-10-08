@@ -16,41 +16,53 @@
 
     <div class="wrapper-md">
       <div class="row">
+        {{published}}
           <div class="col-sm-6">
             <div class="panel panel-default">
-              <div class="panel-heading">                    
+              <div class="panel-heading b-b b-light">
                 <a href class="font-bold">Club News</a>
               </div>
-              <div class="panel-body" ui-jq="slimScroll" ui-options="{height:'250px', size:'8px'}">
-                <div class="media">
-                  <span class="pull-left thumb-sm avatar m-r"><img src="img/a4.jpg" alt="..."></span>
-                  <div class="media-body">
-                    <div class="pull-right text-center text-muted">
-                      <strong class="h4">12:18</strong><br>
-                      <small class="label bg-light">pm</small>
-                    </div>
-                    <a href class="h4">Lorem Ipsum</a>
-                    <small class="block"><a href class="">John Kim</a> <span class="label label-success"></span></small>
-                    <small class="block m-t-sm">Lorem ipsum dolor</small>
-                  </div>
+              <ul class="list-group list-group-lg no-bg auto">
+                <li class="list-group-item clearfix">
+                  <span class="pull-left thumb-sm avatar m-r">
+                    <img src="img/a4.jpg" alt="...">
+                    <i class="on b-white bottom"></i>
+                  </span>
+                  <span class="clear">
+                    <span>Kevyn Aucoin</span>
+                    <small class="text-muted clear text-ellipsis">Today I choose life. Every morning when I wake up I can choose joy, happiness, negativity, pain... To feel the freedom that comes from being able to continue to make mistakes and choices - today I choose to feel life, not to deny my humanity but embrace it.</small>
+                  </span>
+                </li>
+                <li class="list-group-item clearfix">
+                  <span class="pull-left thumb-sm avatar m-r">
+                    <img src="img/a5.jpg" alt="...">
+                    <i class="on b-white bottom"></i>
+                  </span>
+                  <span class="clear">
+                    <span>Norman Vincent Peale</span>
+                    <small class="text-muted clear text-ellipsis">Change your thoughts and you change your world.</small>
+                  </span>
+                </li>
+                <li class="list-group-item clearfix">
+                  <span class="pull-left thumb-sm avatar m-r">
+                    <img src="img/a6.jpg" alt="...">
+                    <i class="busy b-white bottom"></i>
+                  </span>
+                  <span class="clear">
+                    <span>Milton Berle</span>
+                    <small class="text-muted clear text-ellipsis">If opportunity doesn't knock, build a door.</small>
+                  </span>
+                </li>
+              </ul>
+              <div class="clearfix panel-footer">
+                <div class="input-group">
+                  <input type="text" class="form-control input-sm btn-rounded" placeholder="Search">
+                  <span class="input-group-btn">
+                    <button type="submit" class="btn btn-default btn-sm btn-rounded"><i class="fa fa-search"></i></button>
+                  </span>
                 </div>
-                <div class="line pull-in"></div>
-                <div class="media">
-                  <span class="pull-left thumb-sm avatar m-r"><img src="img/a4.jpg" alt="..."></span>
-                  <div class="media-body">
-                    <div class="pull-right text-center text-muted">
-                      <strong class="h4">12:18</strong><br>
-                      <small class="label bg-light">pm</small>
-                    </div>
-                    <a href class="h4">Lorem Ipsum</a>
-                    <small class="block"><a href class="">John Park</a> <span class="label label-success"></span></small>
-                    <small class="block m-t-sm">Lorem ipsum dolor</small>
-                  </div>
-                </div>
-                <div class="line pull-in"></div>
-               
               </div>
-            </div>
+            </div>       
           </div>
           <div class="col-sm-6">
             <div class="panel panel-default">
@@ -174,39 +186,19 @@
         <div class="wrapper-md">
           <div class="m-b-sm text-md">Who's New</div>
           <ul class="list-group no-bg no-borders pull-in">
-            <li class="list-group-item">
+            <li class="list-group-item" ng-repeat="member in members">
               <a herf class="pull-left thumb-sm avatar m-r">
                 <img src="img/a4.jpg" alt="..." class="img-circle">
                 <i class="on b-white bottom"></i>
               </a>
               <div class="clear">
-                <div><a href>Chris Park</a></div>
+                <div><a ui-sref="secure.profile({memberId: member.$id})">{{member.username}}</a></div>
                 <small class="text-muted">Designer</small>
-              </div>
-            </li>
-            <li class="list-group-item">
-              <a herf class="pull-left thumb-sm avatar m-r">
-                <img src="img/a5.jpg" alt="..." class="img-circle">
-                <i class="on b-white bottom"></i>
-              </a>
-              <div class="clear">
-                <div><a href>Chris Park</a></div>
-                <small class="text-muted">Writer</small>
-              </div>
-            </li>
-            <li class="list-group-item">
-              <a herf class="pull-left thumb-sm avatar m-r">
-                <img src="img/a6.jpg" alt="..." class="img-circle">
-                <i class="busy b-white bottom"></i>
-              </a>
-              <div class="clear">
-                <div><a href>John Park</a></div>
-                <small class="text-muted">Lawyer</small>
               </div>
             </li>
           </ul>
           <div class="text-center">
-            <a href class="btn btn-sm btn-primary padder-md m-b">More Connections</a>
+            <a ui-sref="secure.search" class="btn btn-sm btn-primary padder-md m-b">More Connections</a>
           </div>
         </div>
       </tab>     

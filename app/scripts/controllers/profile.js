@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app.controllers.profile', [])
-  .controller('ProfileCtrl', function ($scope, $state, currentUser, user, UserService, $q, twitterService) {
+  .controller('ProfileCtrl', function ($scope, $state, currentUser, user, UserService, $q, twitterService, $http, MembersService, membersRef) {
     if (!currentUser) {
       $state.go('login');
     }
@@ -11,6 +11,13 @@ angular.module('app.controllers.profile', [])
     $scope.user = user;
 
     $scope.username = user.username;
+
+    // For Search Page
+
+    $scope.members = membersRef.$asArray();
+
+
+    // For Social Media
 
     $scope.tweets; //array of tweets
     
@@ -59,5 +66,22 @@ angular.module('app.controllers.profile', [])
         $scope.refreshTimeline();
         $scope.followersCount();
     }
+
+    $http.get('js/app/contact/contacts.json').then(function (resp) {
+        $scope.items = resp.data.items;
+        $scope.item = $scope.items[0];
+        $scope.item.selected = true;
+    });
+
+
+      $scope.editItem = function(item){
+        if(item && item.selected){
+          item.editing = true;
+        }
+      };
+
+      $scope.doneEditing = function(item){
+        item.editing = false;
+      };
 
   });

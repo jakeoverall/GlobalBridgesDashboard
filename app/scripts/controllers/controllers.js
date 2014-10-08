@@ -27,9 +27,9 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
       },
       settings: {
         themeID: 1,
-        navbarHeaderColor: 'bg-black',
+        navbarHeaderColor: 'bg-primary',
         navbarCollapseColor: 'bg-white-only',
-        asideColor: 'bg-black',
+        asideColor: 'bg-dark',
         headerFixed: false,
         asideFixed: false,
         asideFolded: false

@@ -17,10 +17,11 @@ angular.module('app.controllers.words', [])
       });
     };
 
-    $scope.createWord = function (title) {
+
+    $scope.createWord = function (title, type) {
       $scope.words.$add({
         title: title,
-        type: 'page',
+        type: type,
         created: moment().format(),
         author: {
           name: $scope.user.name || $scope.currentUser.id,
@@ -50,6 +51,7 @@ angular.module('app.controllers.words', [])
       });
 
     };
+
 
 
 

@@ -31,6 +31,8 @@ var app = angular.module('app', [
     'app.controllers.words',
     'app.controllers.word',
     'app.controllers.profile',
+    'app.controllers.dashboard',
+    // 'app.controllers.calendar',
     // Services
     'app.services.environment',
     'app.services.thread',
@@ -38,7 +40,9 @@ var app = angular.module('app', [
     'app.services.user',
     'app.services.admin',
     'app.services.underscore',
-    'app.services.twitterApp'
+    'app.services.twitterApp',
+    'app.services.members',
+    'app.services.calendar'
   ])
 .run(
   [          '$rootScope', '$state', '$stateParams',
@@ -140,11 +144,44 @@ var app = angular.module('app', [
             })
             .state('secure.dashboard', {
                 url: '/dashboard',
-                templateUrl: 'views/dashboard.html'
+                templateUrl: 'views/dashboard.html',
+                controller: 'DashboardCtrl',
+                resolve: {
+                  membersRef: function (MembersService) {
+                    return MembersService.getMembers();
+                  },
+                  memberRef: function (MembersService, $stateParams) {
+                    return MembersService.getMember($stateParams.memberId);
+                  },
+                  wordsRef: function (AdminService) {
+                    return AdminService.getWords();
+                  },
+                  wordRef: function (AdminService, $stateParams) {
+                    return AdminService.getWord($stateParams.wordId);
+                  },
+                  publishedRef: function (AdminService) {
+                    return AdminService.getPublished();
+                  }
+
+                }
+
             })
             .state('secure.profile', {
                 url: '/profile',
                 templateUrl: 'views/profile.html',
+                controller: 'ProfileCtrl',
+                resolve: {
+                    currentUser: function (UserService) {
+                    return UserService.getCurrentUser();
+                    },
+                    user: function (UserService) {
+                    return UserService.getUser();
+                    }
+                }
+            })
+            .state('secure.editprofile', {
+                url: '/editprofile',
+                templateUrl: 'views/edit-profile.html',
                 controller: 'ProfileCtrl',
                 resolve: {
                     currentUser: function (UserService) {
@@ -206,7 +243,16 @@ var app = angular.module('app', [
             })
             .state('secure.search', {
                 url: '/search',
-                templateUrl: 'views/search.html'
+                templateUrl: 'views/search.html',
+                controller: 'ProfileCtrl',
+                resolve: {
+                  membersRef: function (MembersService) {
+                    return MembersService.getMembers();
+                  },
+                  memberRef: function (MembersService, $stateParams) {
+                    return MembersService.getMember($stateParams.memberId);
+                  }
+              }
             })
             .state('secure.twitter', {
                 url: '/twitter',
@@ -237,6 +283,12 @@ var app = angular.module('app', [
                 templateUrl: 'views/calendar.html',
                 // use resolve to load other dependences
                 resolve: {
+                    // eventsRef: function (CalendarService) {
+                    //   return CalendarService.getEvents();
+                    // },
+                    // eventRef: function (CalendarService, $stateParams) {
+                    //   return CalendarService.getEvent($stateParams.eventId);
+                    // },
                     deps: ['uiLoad',
                       function( uiLoad ){
                         return uiLoad.load( ['js/jquery/fullcalendar/fullcalendar.css',
@@ -297,6 +349,15 @@ var app = angular.module('app', [
                 },
                 draftsRef: function (AdminService, $stateParams) {
                   return AdminService.getDrafts($stateParams.wordId);
+                },
+                publishedNewsRef: function (AdminService) {
+                  return AdminService.getPublishedNews();
+                },
+                publishedPostsRef: function (AdminService) {
+                  return AdminService.getPublishedPosts();
+                },
+                publishedMessagesRef: function (AdminService) {
+                  return AdminService.getPublishedMessages();
                 }
               }
             })

@@ -1,14 +1,19 @@
 'use strict';
 
 angular.module('app.controllers.word', [])
-  .controller('WordCtrl', function ($scope, wordRef, draftsRef, _, $localStorage) {
+  .controller('WordCtrl', function ($scope, wordRef, draftsRef, _, $localStorage, publishedNewsRef, publishedPostsRef, publishedMessagesRef) {
 
   	$scope.$storage = $localStorage;
+
+    $scope.news = publishedNewsRef.$asArray();
+
+    $scope.posts = publishedPostsRef.$asArray();
+
+    $scope.messages = publishedMessagesRef.$asArray();
     /*
      * Word
     */
     var word = wordRef.$asObject();
-    console.log(word);
 
     word.$bindTo($scope, 'word');
 
@@ -49,13 +54,45 @@ angular.module('app.controllers.word', [])
     };
 
     $scope.setPublishedDraft = function (draft) {
-      var datetime = moment().format();
+      if (word.type === "News") {
+        $scope.news.$add({
+          text: draft
+        }).then(function (draft) {
+          var datetime = moment().format();
+          draft.edited = datetime;
+          draft.published = datetime;
+          $scope.word.published = draft;
+          console.log($scope.word.published);
+        })
+      } else if (word.type === "Presidents Message") {
+        $scope.messages.$add({
+          text: draft
+        }).then(function (draft) {
+          var datetime = moment().format();
+          draft.edited = datetime;
+          draft.published = datetime;
+          $scope.word.published = draft;
+          console.log($scope.word.published);
+        })
+      } else {
+        $scope.posts.$add({
+          text: draft
+        }).then(function (draft) {
+          var datetime = moment().format();
+          draft.edited = datetime;
+          draft.published = datetime;
+          $scope.word.published = draft;
+          console.log($scope.word.published);
+        })
+      } 
+    };
 
-      draft.edited = datetime;
-      draft.published = datetime;
-      $scope.word.published = draft;
-      console.log("done");
-
+    $scope.test = function () {
+      if (word.type === "page") {
+        alert("true");
+      } else {
+        alert("false");
+      }
     };
 
     $scope.unpublish = function () {

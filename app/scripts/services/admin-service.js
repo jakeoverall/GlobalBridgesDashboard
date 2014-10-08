@@ -15,6 +15,18 @@ angular.module('app.services.admin', [])
 
       getDrafts: function (wordId) {
         return $firebase(new Firebase(firebaseUrl + '/content/words/' + wordId + '/drafts'));
+      },
+
+      getPublishedNews: function () {
+        return $firebase(new Firebase(firebaseUrl + '/content/published/news'));
+      },
+
+      getPublishedPosts: function () {
+        return $firebase(new Firebase(firebaseUrl + '/content/published/posts'));
+      },
+
+      getPublishedMessages: function () {
+        return $firebase(new Firebase(firebaseUrl + '/content/published/messages'));
       }
       
     }
