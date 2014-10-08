@@ -13,7 +13,6 @@
 	<div class="col-sm-4">
     	<button class="btn btn-sm btn-primary" ng-click="saveDraft($storage.activeDraft)">Save As Draft</button>
 	    <button class="btn btn-sm btn-primary" ng-click="setPublishedDraft($storage.activeDraft)" ng-disabled="!$storage.activeDraft">Publish</button>
-	    <button class="btn btn-sm btn-primary" ng-click="test()">Test</button>
 	    <hr>
 	    <h5>Active Draft</h5>
 	    <div ng-show="$storage.activeDraft.edited" class="text-x-small">Edited: {{ $storage.activeDraft.edited | date:'MM/dd/yy HH:mm' }}</div>

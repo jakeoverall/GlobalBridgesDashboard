@@ -87,14 +87,6 @@ angular.module('app.controllers.word', [])
       } 
     };
 
-    $scope.test = function () {
-      if (word.type === "page") {
-        alert("true");
-      } else {
-        alert("false");
-      }
-    };
-
     $scope.unpublish = function () {
       delete $scope.word.published;
       console.log("done");
