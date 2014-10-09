@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app.controllers.profile', [])
-  .controller('ProfileCtrl', function ($scope, $state, currentUser, user, UserService, $q, twitterService, $http, MembersService, membersRef) {
+  .controller('ProfileCtrl', function ($scope, $state, currentUser, user, UserService, $q, twitterService, $http, membersRef, memberRef) {
     if (!currentUser) {
       $state.go('login');
     }

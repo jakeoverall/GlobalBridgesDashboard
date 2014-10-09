@@ -31,6 +31,10 @@ angular.module('app.services.admin', [])
 
       getPublishedMessages: function () {
         return $firebase(new Firebase(firebaseUrl + '/content/published/messages'));
+      },
+
+      getComments: function () {
+        return $firebase(new Firebase(firebaseUrl + '/content/published/posts/comments'));
       }
       
     }

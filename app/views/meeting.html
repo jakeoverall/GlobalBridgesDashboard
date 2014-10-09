@@ -34,40 +34,29 @@
         </ul>
       </div> -->
       <h4 class="m-t-lg m-b"> Comments</h4>
-      <div ng-repeat="(postId, post) in posts">
-        <div>
-          <div class="m-l-xxl m-b">
+        <div ng-repeat="comment in comments">
             <div>
-              <!-- This href is where we would link to their profile -->
-              <a href><strong>{{post.title}}</strong></a>
-               
-              <!-- <span class="text-muted text-xs block m-t-xs">
-                24 minutes ago
-              </span> -->
+              <a class="pull-left thumb-sm">
+                <img src="img/a0.jpg" class="img-circle">
+              </a>
+              <div class="m-l-xxl m-b">
+                <div>
+                  <a href><strong>{{ comment.username }}</strong></a> 
+                </div>
+                <div class="m-t-sm">{{ comment.text }}</div>
+              </div>
             </div>
-            <div class="m-t-sm">{{post.url}}</div>
           </div>
-        </div>
-      </div>
-      <form ng-submit="submitPost()">
-        <div class="form-group pull-in clearfix">
-          <div class="col-sm-6">
-            <label>Your name</label>
-            <input type="text" class="form-control" placeholder="Name" ng-model="post.title">
-          </div>
-          <!-- <div class="col-sm-6">
-            <label >Email</label>
-            <input type="email" class="form-control" placeholder="Enter email" ng-model="post.email">
-          </div> -->
-        </div>
-        <div class="form-group">
-          <label>Comment</label>
-          <textarea class="form-control" rows="5" placeholder="Type your comment" ng-model="post.url"></textarea>
-        </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-success">Submit comment</button>
-        </div>
-      </form>
+          <h4 class="m-t-lg m-b">Leave a comment</h4>
+          <form name="newCommentForm">
+            <div class="form-group">
+              <label>Comment</label>
+              <textarea ng-model="newCommentText" class="form-control" rows="5" placeholder="Type your comment" required></textarea>
+            </div>
+            <div class="form-group">
+              <button ng-disabled="newCommentForm.$invalid" ng-click="createComment(user.username, newCommentText)" class="btn btn-success">Submit comment</button>
+            </div>
+          </form>
     </div>
     <div class="col-sm-3">
       <h5 class="font-bold">Recent Club Meetings</h5>

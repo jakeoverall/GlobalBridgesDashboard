@@ -64,44 +64,14 @@
       <div class="">
         <h4 class="m-t-xs m-b-xs">Who to follow</h4>
         <ul class="list-group no-bg no-borders pull-in">
-          <li class="list-group-item">
+          <li class="list-group-item" ng-repeat="member in members">
             <a herf class="pull-left thumb-sm avatar m-r">
               <img src="img/a4.jpg" alt="..." class="img-circle">
               <i class="on b-white bottom"></i>
             </a>
             <div class="clear">
-              <div><a href>Chris Park</a></div>
+              <div><a href>{{member.username}}</a></div>
               <small class="text-muted">Doctor</small>
-            </div>
-          </li>
-          <li class="list-group-item">
-            <a herf class="pull-left thumb-sm avatar m-r">
-              <img src="img/a5.jpg" alt="..." class="img-circle">
-              <i class="on b-white bottom"></i>
-            </a>
-            <div class="clear">
-              <div><a href>Megan Park</a></div>
-              <small class="text-muted">Writter</small>
-            </div>
-          </li>
-          <li class="list-group-item">
-            <a herf class="pull-left thumb-sm avatar m-r">
-              <img src="img/a6.jpg" alt="..." class="img-circle">
-              <i class="busy b-white bottom"></i>
-            </a>
-            <div class="clear">
-              <div><a href>Joey Kim</a></div>
-              <small class="text-muted">Lawyer</small>
-            </div>
-          </li>
-          <li class="list-group-item">
-            <a herf class="pull-left thumb-sm avatar m-r">
-              <img src="img/a7.jpg" alt="..." class="img-circle">
-              <i class="away b-white bottom"></i>
-            </a>
-            <div class="clear">
-              <div><a href>Chris Sims</a></div>
-              <small class="text-muted">Business Owner</small>
             </div>
           </li>
         </ul>

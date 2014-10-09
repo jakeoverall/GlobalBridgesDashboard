@@ -192,6 +192,12 @@ var app = angular.module('app', [
                     },
                     user: function (UserService) {
                     return UserService.getUser();
+                    },
+                    membersRef: function (MembersService) {
+                    return MembersService.getMembers();
+                    },
+                    memberRef: function (MembersService, $stateParams) {
+                      return MembersService.getMember($stateParams.memberId);
                     }
                 }
             })
@@ -205,6 +211,12 @@ var app = angular.module('app', [
                     },
                     user: function (UserService) {
                     return UserService.getUser();
+                    },
+                    membersRef: function (MembersService) {
+                    return MembersService.getMembers();
+                    },
+                    memberRef: function (MembersService, $stateParams) {
+                      return MembersService.getMember($stateParams.memberId);
                     }
                 }
             })
@@ -221,6 +233,9 @@ var app = angular.module('app', [
                   },
                   publishedPostsRef: function (AdminService) {
                   return AdminService.getPublishedPosts();
+                  },
+                  commentsRef: function (AdminService) {
+                  return AdminService.getComments();
                   }
                 }
             })
