@@ -34,6 +34,7 @@ var app = angular.module('app', [
     'app.controllers.profile',
     'app.controllers.dashboard',
     'app.controllers.signup',
+    'app.controllers.meeting',
     // 'app.controllers.calendar',
     // Services
     'app.services.environment',
@@ -210,13 +211,16 @@ var app = angular.module('app', [
             .state('secure.meeting', {
                 url: '/meeting',
                 templateUrl: 'views/meeting.html',
-                controller: 'WordCtrl',
+                controller: 'MeetingCtrl',
                 resolve: {
-                  wordRef: function (AdminService, $stateParams) {
-                    return AdminService.getWord($stateParams.wordId);
+                  membersRef: function (MembersService) {
+                    return MembersService.getMembers();
                   },
-                  draftsRef: function (AdminService, $stateParams) {
-                    return AdminService.getDrafts($stateParams.wordId);
+                  memberRef: function (MembersService, $stateParams) {
+                    return MembersService.getMember($stateParams.memberId);
+                  },
+                  publishedPostsRef: function (AdminService) {
+                  return AdminService.getPublishedPosts();
                   }
                 }
             })

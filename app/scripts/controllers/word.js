@@ -20,13 +20,12 @@ angular.module('app.controllers.word', [])
     word.$loaded().then(function () {
       if (!$scope.$storage.activeDraft || $scope.$storage.activeDraft.wordId !== $scope.word.$id) {
         $scope.$storage.activeDraft = {
+          title: $scope.word.title,
           markdown: $scope.word.published ? $scope.word.published.markdown : '#Use your words! \n\n(But please make it Markdown...)',
           created: moment().format(),
           wordId: $scope.word.$id
         };
       }
-
-      // $scope.showDraft = true;
     });
 
 
