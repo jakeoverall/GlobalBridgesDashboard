@@ -35,6 +35,8 @@ var app = angular.module('app', [
     'app.controllers.dashboard',
     'app.controllers.signup',
     'app.controllers.meeting',
+    'app.controllers.projects',
+    'app.controllers.project',
     // 'app.controllers.calendar',
     // Services
     'app.services.environment',
@@ -243,6 +245,16 @@ var app = angular.module('app', [
                 url: '/tasks',
                 templateUrl: 'views/tasks.html',
                 controller: 'TasksCtrl'
+            })
+            .state('secure.projects', {
+                url: '/projects',
+                templateUrl: 'views/projects.html',
+                controller: 'ProjectsCtrl'
+            })
+            .state('secure.project', {
+              url: '/project',
+              templateUrl: 'views/project-detail.html',
+              controller: 'ProjectCtrl'
             })
             // .state('secure.task', {
             //   url: '/task/:taskId',
