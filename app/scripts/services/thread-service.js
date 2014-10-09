@@ -16,7 +16,6 @@ angular.module('app.services.thread', [])
       getComments: function (threadId) {
         return $firebase(new Firebase(firebaseUrl + '/threads/' + threadId + '/comments'));
       }
-
       
     }
   });

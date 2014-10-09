@@ -7,29 +7,20 @@
 
 <div class="ibox-content m-b-sm border-bottom">
     <div class="text-center p-lg">
-        <h2>If you don't find the answer to your question</h2>
-        <span>add your question by selecting </span>
-        <button title="Create new cluster" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> <span class="bold">Add question</span></button>
-        button
+        <button title="Create new cluster" class="btn btn-primary btn-sm" ui-sref="secure.compose"><i class="fa fa-plus"></i> <span class="bold">Add question</span></button>
     </div>
 </div>
-
-<div class="faq-item">
+<div class="faq-item" ng-repeat="thread in threads">
     <div class="row">
         <div class="col-md-7">
-            <a ng-click="faq1 = !faq1" class="faq-question">What It a long established fact that a reader ?</a>
-            <small>Added by <strong>Alex Smith</strong> <i class="fa fa-clock-o"></i> Today 2:40 pm - 24.06.2014</small>
+            <a ng-click="faq1 = !faq1" ng-init="faq1 = true" class="faq-question">{{ thread.title }}</a>
+            <small>Added by <strong>{{ thread.username }}</strong> <i class="fa fa-clock-o"></i> {{ thread.created | date }}</small></small>
         </div>
         <div class="col-md-3">
-            <span class="small font-bold">Robert Nowak</span>
 
-            <div class="tag-list">
-                <span class="tag-item">General</span>
-                <span class="tag-item">License</span>
-            </div>
         </div>
         <div class="col-md-2 text-right">
-            <span class="small font-bold">Voting </span><br/>
+            <span class="small font-bold">Comments </span><br/>
             42
         </div>
     </div>
@@ -37,8 +28,7 @@
         <div class="col-lg-12">
             <div collapse="faq1" class="panel-collapse collapse faq-answer">
                 <p>
-                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a
-                    more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
+                    {{ thread.text }} <a ui-sref="secure.thread({threadId: thread.$id})"> See More >>></a>
                 </p>
             </div>
         </div>
@@ -290,39 +280,3 @@
 </div>
 </div>
 </div>
-<!-- <div class="wrapper b-b bg">
-    <button class="btn btn-sm btn-default pull-right visible-sm visible-xs" ui-toggle-class="show" target="#email-menu"><i class="fa fa-bars"></i></button>
-    <a ui-sref="secure.compose" class="btn btn-sm btn-danger w-xs font-bold">Create Thread</a>
-</div>
-<div class="wrapper-md">
-  <div class="row">
-    <div class="col-sm-11">
-      <div class="blog-post">                   
-        <div class="panel" ng-repeat="thread in threads">
-          <div class="wrapper-lg">
-            <h2 class="m-t-none"><a ui-sref="secure.thread({threadId: thread.$id})">{{ thread.title }}</a></h2>
-            <div>
-              <p>{{ thread.text }}</p>
-            </div>
-            <div class="line line-lg b-b b-light"></div>
-            <div class="text-muted">
-              <i class="fa fa-user text-muted"></i> by <a href class="m-r-sm">{{ thread.username }}</a>
-              <!-- <a href class="m-l-sm"><i class="fa fa-comment-o text-muted"></i> 2 comments</a> -->
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="text-center m-t-lg m-b-lg">
-        <ul class="pagination pagination-md">
-          <li><a href><i class="fa fa-chevron-left"></i></a></li>
-          <li><a href>1</a></li>
-          <li><a href>2</a></li>
-          <li><a href>3</a></li>
-          <li><a href>4</a></li>
-          <li><a href>5</a></li>
-          <li><a href><i class="fa fa-chevron-right"></i></a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div> -->

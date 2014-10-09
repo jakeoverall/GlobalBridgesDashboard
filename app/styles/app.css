@@ -292,7 +292,7 @@ color:#FFF!important;
 color:#CCC!important;
 }
 
-h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6 {
+h1,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6 {
 font-family:'Open Sans', sans-serif;
 font-weight:400;
 color:#2f3640;
@@ -1967,7 +1967,7 @@ a.list-group-item:focus {
 .panel-group .panel-heading + .panel-collapse .panel-body {
   border-top: 1px solid #eaedef;
 }
-.table > tbody > tr > td,
+/*.table > tbody > tr > td,
 .table > tfoot > tr > td {
   padding: 8px 15px;
   border-top: 1px solid #eaeff0;
@@ -1975,6 +1975,22 @@ a.list-group-item:focus {
 .table > thead > tr > th {
   padding: 8px 15px;
   border-bottom: 1px solid #eaeff0;
+}*/
+
+.table > thead > tr > th {
+  border-bottom: 1px solid #DDDDDD;
+  vertical-align: bottom;
+}
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+  border-top: 1px solid #e7eaec;
+  line-height: 1.42857;
+  padding: 8px;
+  vertical-align: top;
 }
 .table-bordered {
   border-color: #eaeff0;
@@ -2960,7 +2976,6 @@ fieldset[disabled] .btn-white.active {
   border-style: solid solid none;
   border-width: 1px 0px;
 }
-
 
 .ibox-content {
   clear: both;
