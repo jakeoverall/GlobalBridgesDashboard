@@ -37,6 +37,8 @@ var app = angular.module('app', [
     'app.controllers.meeting',
     'app.controllers.projects',
     'app.controllers.project',
+    'app.controllers.committees',
+    'app.controllers.committee',
     // 'app.controllers.calendar',
     // Services
     'app.services.environment',
@@ -48,7 +50,8 @@ var app = angular.module('app', [
     'app.services.twitterApp',
     'app.services.members',
     'app.services.calendar',
-    'app.services.signup'
+    'app.services.signup',
+    'app.services.committees'
   ])
 .run(
   [          '$rootScope', '$state', '$stateParams',
@@ -189,12 +192,12 @@ var app = angular.module('app', [
                 templateUrl: 'views/profile.html',
                 controller: 'ProfileCtrl',
                 resolve: {
-                    currentUser: function (UserService) {
-                    return UserService.getCurrentUser();
-                    },
-                    user: function (UserService) {
-                    return UserService.getUser();
-                    },
+                    // currentUser: function (UserService) {
+                    // return UserService.getCurrentUser();
+                    // },
+                    // user: function (UserService) {
+                    // return UserService.getUser();
+                    // },
                     membersRef: function (MembersService) {
                     return MembersService.getMembers();
                     },
@@ -208,12 +211,12 @@ var app = angular.module('app', [
                 templateUrl: 'views/edit-profile.html',
                 controller: 'ProfileCtrl',
                 resolve: {
-                    currentUser: function (UserService) {
-                    return UserService.getCurrentUser();
-                    },
-                    user: function (UserService) {
-                    return UserService.getUser();
-                    },
+                    // currentUser: function (UserService) {
+                    // return UserService.getCurrentUser();
+                    // },
+                    // user: function (UserService) {
+                    // return UserService.getUser();
+                    // },
                     membersRef: function (MembersService) {
                     return MembersService.getMembers();
                     },
@@ -241,10 +244,28 @@ var app = angular.module('app', [
                   }
                 }
             })
-            .state('secure.tasks', {
-                url: '/tasks',
+            .state('secure.committees', {
+                url: '/committees',
+                templateUrl: 'views/committees.html',
+                controller: 'CommitteesCtrl',
+                resolve: {
+                  committeesRef: function (CommitteesService) {
+                    return CommitteesService.getCommittees();
+                  }
+                }
+            })
+            .state('secure.committee', {
+                url: '/committee/:committeeId',
                 templateUrl: 'views/tasks.html',
-                controller: 'TasksCtrl'
+                controller: 'CommitteeCtrl',
+                resolve: {
+                  committeeRef: function (CommitteesService, $stateParams) {
+                    return CommitteesService.getCommittee($stateParams.committeeId);
+                  },
+                  tasksRef: function(CommitteesService, $stateParams){
+                    return CommitteesService.getTasks($stateParams.committeeId);
+                  }
+                }
             })
             .state('secure.projects', {
                 url: '/projects',

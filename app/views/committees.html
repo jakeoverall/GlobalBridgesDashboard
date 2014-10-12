@@ -11,25 +11,11 @@
                 <form class="form-horizontal" action="" ng-submit="doneEditing(item)" ng-show="item.editing" data-nodrag>
                   <div class="form-group">
                     <div class="col-lg-4 col-xs-5">
-                      <input style="margin-top:10px" type="text" class="form-control no-validate" ng-model="item.name" placeholder="Task title...">
+                      <input style="margin-top:10px" type="text" class="form-control no-validate" ng-model="item.name" placeholder="Committee Name...">
                     </div>
                     <div class="col-lg-4 col-xs-4">
                       <div class="form-group">
-
-                  <div class="input-group-btn">
-                    <div class="btn-group" dropdown style="">
-                      <button type="button" class="btn btn-lg btn-default dropdown-toggle">
-                        <div class="label label-{{item.color||'app.color.primary'}} color-block"></div>
-                      </button>
-                      <ul class="dropdown-menu dropdown-colors" role="menu">
-                                  <li><span class="label label-success" ng-click="item.color='app.color.success'"></span></li>
-                                  <li><span class="label label-primary" ng-click="item.color='app.color.primary'"></span></li>
-                                  <li><span class="label label-warning" ng-click="item.color='app.color.warning'"></span></li>
-                                  <li><span class="label label-danger" ng-click="item.color='app.color.danger'"></span></li>
-                                  <li><span class="label label-info" ng-click="item.color='app.color.info'"></span></li>
-                      </ul>
-                    </div>
-                  </div>
+                          <input style="margin-top:10px" type="text" class="form-control no-validate" ng-model="item.description" placeholder="Committee Description...">
                 </div>
                     </div>
               <div class="col-lg-2 col-xs-3">
@@ -43,9 +29,9 @@
   <div class="options todooptions pull-right">
       <div class="btn-group" ng-show="!item.editing" style="margin-top:15px">
           
-          <button data-nodrag class="btn btn-default btn-xs" ng-click="completeTask(item)"><i class="fa fa-fw fa-check"></i></button>
+          <button data-nodrag class="btn btn-default btn-xs" ng-click="viewCommittee(item)"><i class="fa fa-fw fa-check"></i></button>
           <button data-nodrag class="btn btn-default btn-xs" ng-click="edit(item)"><i class="fa fa-fw fa-pencil"></i></button>
-          <button data-nodrag class="btn btn-default btn-xs" ng-click="removeTask(item)"><i class="fa fa-fw fa-trash-o"></i></button>
+          <button data-nodrag class="btn btn-default btn-xs" ng-click="removeCommittee(item)"><i class="fa fa-fw fa-trash-o"></i></button>
       </div>
   </div>
 </script>
@@ -58,14 +44,24 @@
           <button class="btn btn-primary btn-sm" ng-click="showForm=true;showTasksTab=true;showCompletedTab=false" style="margin-top: -5px;">Add Task</button>
         </panel-controls>
         <tab active="showTasksTab">
-          <tab-heading><i class="fa fa-tasks"></i> To-do <span class="badge badge-primary"></span></tab-heading>
+          <tab-heading><i class="fa fa-tasks"></i> To-do <span class="badge badge-primary">{{tasks.length}}</span></tab-heading>
                   <div>
 
-                    <form class="form-horizontal" name="create_task" ng-submit="newItem(task)" ng-show="showForm">
+
+                  	<form ng-submit="addCommittee(committee)">
+
+                  		<input ng-model="committee.name" placeholder="Committee Name">
+                  		<input ng-model="committee.description" placeholder="Description">
+                  		<input type="submit" value="Add Committee">
+
+                  	</form>
+
+
+                    <!-- <form class="form-horizontal" name="create_task" ng-submit="newItem()" ng-show="showForm">
                       <br>
                       <div class="form-group">
                         <div class="col-lg-8 col-md-7 col-sm-6 col-xs-5">
-                          <input type="text" class="form-control no-validate" ng-model="task.name" placeholder="Task title...">
+                          <input type="text" class="form-control no-validate" ng-model="newTaskTitle" placeholder="Task title...">
                         </div>
                         
                         <div class="col-md-2 col-lg-1">
@@ -76,15 +72,15 @@
                             />
                         </div>
                       </div>    
-                    </form>  
+                    </form>   -->
                   </div>
                   <div ui-tree="options" class="tasklist">
-                    <ol ui-tree-nodes ng-model="tasks" class="panel-tasks">
+                    <ol ui-tree-nodes ng-model="committees" class="panel-tasks">
                       <li
                         ui-tree-node
                         ui-tree-handle
                         class="list-group-item"
-                        ng-repeat="item in tasks | filter: {completed: 'false'}"
+                        ng-repeat="item in committees"
                         ng-include="'items_renderer.html'"
                       ></li>
                     </ol>
@@ -94,12 +90,12 @@
           <tab-heading><i class="fa fa-check"></i> Completed <span class="badge badge-success">{{tasksComplete.length}}</span></tab-heading>
           <div class="tasklist">
             <ol class="panel-tasks">
-              <li ng-repeat="item in tasks | filter: {completed: 'true'}" class="list-group-item">
+              <li ng-repeat="item in tasksComplete" class="list-group-item">
                   <span class="pull-right">
-                    <a href ng-click="incompleteTask(item)"><i class="fa fa-undo fa-fw m-r-xs"></i></a>
+                    <a href ng-click="incomplete(item, $index)"><i class="fa fa-undo fa-fw m-r-xs"></i></a>
                   </span>
                   <label>
-                    <span class="task-description">{{item.name}}</span>
+                    <span class="task-description">{{item.title}}</span>
                   </label>
               </li>
             </ol>

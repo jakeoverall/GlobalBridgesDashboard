@@ -1,16 +1,16 @@
 'use strict';
 
 angular.module('app.controllers.profile', [])
-  .controller('ProfileCtrl', function ($scope, $state, currentUser, user, UserService, $q, twitterService, $http, membersRef, memberRef) {
-    if (!currentUser) {
-      $state.go('login');
-    }
+  .controller('ProfileCtrl', function ($scope, $state, UserService, $q, twitterService, $http, membersRef, memberRef) {
+    // if (!currentUser) {
+    //   $state.go('login');
+    // }
 
-    $scope.currentUser = currentUser;
+    // $scope.currentUser = currentUser;
 
-    $scope.user = user;
+    // $scope.user = user;
 
-    $scope.username = user.username;
+    // $scope.username = user.username;
 
     // For Search Page
 
@@ -73,15 +73,15 @@ angular.module('app.controllers.profile', [])
         $scope.item.selected = true;
     });
 
+    $scope.btnText = 'Edit';
 
       $scope.editItem = function(item){
-        if(item && item.selected){
-          item.editing = true;
-        }
+       $scope.user.editing = !$scope.user.editing; 
       };
 
       $scope.doneEditing = function(item){
-        item.editing = false;
+        $scope.user.editing = false;
+        $scope.user.$save();
       };
 
   });

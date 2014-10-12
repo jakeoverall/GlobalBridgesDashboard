@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('app.controllers.tasks', [])
-  .controller('TasksCtrl', ['$scope', function ($scope) {
+  .controller('TasksCtrl', function ($scope) {
     $scope.newTaskTitle = ''
     $scope.newTaskLabelText = '';
     $scope.showTasksTab = true;
@@ -95,7 +95,7 @@ angular.module('app.controllers.tasks', [])
     $scope.doneEditing = function (item) {
       item.editing = false;
     };
-  }])
+  })
 
 // 'use strict';
 
