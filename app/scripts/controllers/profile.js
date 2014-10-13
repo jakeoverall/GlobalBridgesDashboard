@@ -73,15 +73,18 @@ angular.module('app.controllers.profile', [])
         $scope.item.selected = true;
     });
 
-    $scope.btnText = 'Edit';
 
-      $scope.editItem = function(item){
-       $scope.user.editing = !$scope.user.editing; 
-      };
+    $scope.editItem = function(item){
+      $scope.user.editing = !$scope.user.editing; 
+    };
 
-      $scope.doneEditing = function(item){
-        $scope.user.editing = false;
-        $scope.user.$save();
-      };
+    $scope.doneEditing = function(item){
+      $scope.user.editing = false;
+      $scope.user.$save();
+    };
+
+    // $scope.editProfile = function(profile){
+    //     $state.go('secure.editprofile', {profileId: profile.$id});
+    // }
 
   });
