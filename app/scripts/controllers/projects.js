@@ -1,37 +1,45 @@
-'use strict';
+'use strict'
 
 angular.module('app.controllers.projects', [])
-  .controller('ProjectsCtrl', function ($scope) {
+  .controller('ProjectsCtrl', function ($scope, projectsRef, $state) {
 
-    // $scope.threads = threadsRef.$asArray();
+    $scope.projects = projectsRef.$asArray();
 
-    // $scope.threads.$loaded().then(function (threads) {
-    //   console.log(threads);
-    //   $scope.totalItems = $scope.threads.length;
-    // });
+    $scope.newTaskTitle = ''
+    $scope.newTaskLabelText = '';
+    $scope.showTasksTab = true;
+    $scope.showCompletedTab = false;
 
-    // $scope.createThread = function (username, title, text) {
-    //   $scope.threads.$add({
-    //     username: username,
-    //     title: title,
-    //     text: text
-    //   });
-    //   $state.go('secure.threads');
-    // };
+    $scope.removeCommittee = function(item) {
+      $scope.committees.$remove(item);
+    };
 
-    // $scope.numPages = function () {
-    //   return Math.ceil($scope.threads.length / $scope.numPerPage);
-    // };
+    $scope.addCommittee = function(committee){
+        if(committee.name){
+            $scope.committees.$add(committee)
+        }
+    };
 
-    
-    // $scope.currentPage = 4;
+    $scope.viewProject = function(project){
+      debugger;
+        $state.go('secure.project', {projectId: project.$id});
+    }
 
-    // $scope.setPage = function (pageNo) {
-    //   $scope.currentPage = pageNo;
-    // };
+    $scope.edit = function (item) {
+      item.editing = true;
+    };
 
-    // $scope.pageChanged = function() {
-    //   $log.info('Page changed to: ' + $scope.currentPage);
-    // };  
+    $scope.cancelEdit = function (item) {
+      item.editing = false;
+    };
 
+    $scope.cancelAdd = function ($event) {
+      if ($event.keyCode != 27) return;
+      this.showForm = false;
+    };
+
+    $scope.doneEditing = function (item) {
+      item.editing = false;
+      $scope.committees.$save(item);
+    };
   });

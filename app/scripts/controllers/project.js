@@ -1,37 +1,49 @@
-'use strict';
+'use strict'
 
 angular.module('app.controllers.project', [])
-  .controller('ProjectCtrl', function ($scope) {
-
-    // $scope.threads = threadsRef.$asArray();
-
-    // $scope.threads.$loaded().then(function (threads) {
-    //   console.log(threads);
-    //   $scope.totalItems = $scope.threads.length;
-    // });
-
-    // $scope.createThread = function (username, title, text) {
-    //   $scope.threads.$add({
-    //     username: username,
-    //     title: title,
-    //     text: text
-    //   });
-    //   $state.go('secure.threads');
-    // };
-
-    // $scope.numPages = function () {
-    //   return Math.ceil($scope.threads.length / $scope.numPerPage);
-    // };
-
+  .controller('ProjectCtrl', function ($scope,projectRef) {
     
-    // $scope.currentPage = 4;
+    $scope.project = projectRef.$asObject();
+    // $scope.tasks = tasksRef.$asArray();
 
-    // $scope.setPage = function (pageNo) {
-    //   $scope.currentPage = pageNo;
-    // };
 
-    // $scope.pageChanged = function() {
-    //   $log.info('Page changed to: ' + $scope.currentPage);
-    // };  
+    $scope.newTaskTitle = ''
+    $scope.newTaskLabelText = '';
+    $scope.showTasksTab = true;
+    $scope.showCompletedTab = false;
 
-  });
+    $scope.removeTask = function(task) {
+      $scope.tasks.$remove(task)
+    };
+
+    $scope.completeTask = function(task) {
+        task.completed = true;
+        $scope.tasks.$save(task);      
+    };
+
+    $scope.incompleteTask = function(task) {
+        task.completed = false;
+        $scope.tasks.$save(task);      
+    };
+
+    $scope.newItem = function (task) {
+      task.completed = false;
+      $scope.tasks.$add(task);
+      this.showForm = false;
+    };
+
+    $scope.edit = function (task) {
+      task.editing = true;
+    };
+
+    $scope.cancelEdit = function (task) {
+      task.editing = false;
+    };
+
+    $scope.doneEditing = function (task) {
+      task.editing = false;
+      $scope.tasks.$save(task)
+    };
+  })
+
+  

@@ -53,7 +53,8 @@ var app = angular.module('app', [
     'app.services.members',
     'app.services.calendar',
     'app.services.signup',
-    'app.services.committees'
+    'app.services.committees',
+    'app.services.projects'
   ])
 .run(
   [          '$rootScope', '$state', '$stateParams',
@@ -309,12 +310,22 @@ var app = angular.module('app', [
             .state('secure.projects', {
                 url: '/projects',
                 templateUrl: 'views/projects.html',
-                controller: 'ProjectsCtrl'
+                controller: 'ProjectsCtrl',
+                resolve: {
+                  projectsRef: function (ProjectsService) {
+                    return ProjectsService.getProjects();
+                  }
+                }
             })
             .state('secure.project', {
-              url: '/project',
+              url: '/project/:projectId',
               templateUrl: 'views/project-detail.html',
-              controller: 'ProjectCtrl'
+              controller: 'ProjectCtrl',
+              resolve: {
+                  projectRef: function (ProjectsService, $stateParams) {
+                    return ProjectsService.getProject($stateParams.projectId);
+                  }
+                }
             })
             // .state('secure.task', {
             //   url: '/task/:taskId',
