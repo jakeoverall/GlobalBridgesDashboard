@@ -10,6 +10,7 @@ var app = angular.module('app', [
     'ngRoute', 
     'ui.bootstrap',
     'ui.tree',
+    'ngImgCrop',
     'ui.load',
     'ui.jq',
     'ui.validate',
@@ -39,6 +40,7 @@ var app = angular.module('app', [
     'app.controllers.project',
     'app.controllers.committees',
     'app.controllers.committee',
+    'app.controllers.imagecrop',
     // 'app.controllers.calendar',
     // Services
     'app.services.environment',
@@ -256,6 +258,11 @@ var app = angular.module('app', [
                       return MembersService.getMember($stateParams.memberId);
                     }
                 }
+            })
+            .state('secure.image', {
+              url: '/image',
+              templateUrl: 'views/image.html',
+              controller: 'ImgCropCtrl'
             })
             .state('secure.meeting', {
                 url: '/meeting',
