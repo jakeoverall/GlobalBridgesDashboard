@@ -187,6 +187,38 @@ var app = angular.module('app', [
                 }
 
             })
+            .state('secure.search', {
+                url: '/search',
+                templateUrl: 'views/search.html',
+                controller: 'ProfileCtrl',
+                resolve: {
+                  membersRef: function (MembersService) {
+                    return MembersService.getMembers();
+                  },
+                  memberRef: function (MembersService, $stateParams) {
+                    return MembersService.getMember($stateParams.memberId);
+                  }
+              }
+            })
+            .state('secure.member', {
+                url: '/member:memberId',
+                templateUrl: 'views/member.html',
+                controller: 'ProfileCtrl',
+                resolve: {
+                    // currentUser: function (UserService) {
+                    // return UserService.getCurrentUser();
+                    // },
+                    // user: function (UserService) {
+                    // return UserService.getUser();
+                    // },
+                    membersRef: function (MembersService) {
+                    return MembersService.getMembers();
+                    },
+                    memberRef: function (MembersService, $stateParams) {
+                      return MembersService.getMember($stateParams.memberId);
+                    }
+                }
+            })
             .state('secure.profile', {
                 url: '/profile',
                 templateUrl: 'views/profile.html',
@@ -300,19 +332,6 @@ var app = angular.module('app', [
             //     }
             //   }
             // })
-            .state('secure.search', {
-                url: '/search',
-                templateUrl: 'views/search.html',
-                controller: 'ProfileCtrl',
-                resolve: {
-                  membersRef: function (MembersService) {
-                    return MembersService.getMembers();
-                  },
-                  memberRef: function (MembersService, $stateParams) {
-                    return MembersService.getMember($stateParams.memberId);
-                  }
-              }
-            })
             .state('secure.twitter', {
                 url: '/twitter',
                 templateUrl: 'views/twitter.html',

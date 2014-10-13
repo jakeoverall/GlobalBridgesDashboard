@@ -21,7 +21,7 @@
             <img src="img/a0.jpg" alt="..." class="img-circle">
           </a>
           <div class="clear">
-            <a ui-sref="secure.profile({memberId: member.$id})" class="h4 text-primary m-b-sm block">{{member.username}}</a>
+            <a ng-click="viewMember(member)" class="h4 text-primary m-b-sm block">{{member.username}}</a>
             <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id neque quam. Aliquam sollicitudin egestas dui nec, fermentum diam. Vivamus vel tincidunt libero</div>
           </div>
         </li>

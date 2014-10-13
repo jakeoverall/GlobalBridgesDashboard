@@ -9,7 +9,7 @@
             </a>
             <div class="clear m-b">
               <div class="m-b m-t-sm">
-                <span class="h3 text-black">{{ user.username }}</span>
+                <span class="h3 text-black">{{ member.username }}</span>
                 <small class="m-l">Salt Lake City</small>
               </div>
               <p class="m-b">
@@ -32,7 +32,7 @@
       <div class="padder">
        <div class="col-sm-12">
         <div class="panel b-a">
-          <h4 class="font-thin padder">{{ user.username }}'s Latest Tweets</h4>
+          <h4 class="font-thin padder">{{ member.username }}'s Latest Tweets</h4>
           <ul class="list-group">
             <li class="list-group-item" ng-repeat="t in tweets | limitTo: 5">
                 <!-- <div class="col-xs-2 col-sm-1">

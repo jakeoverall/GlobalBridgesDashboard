@@ -15,6 +15,12 @@ angular.module('app.controllers.profile', [])
     // For Search Page
 
     $scope.members = membersRef.$asArray();
+    $scope.member = memberRef.$asObject();
+
+    $scope.viewMember = function(member){
+        debugger;
+        $state.go('secure.member', {memberId: member.$id});
+    }
 
 
     // For Social Media
