@@ -1,13 +1,26 @@
 <div class="modal-header">
-    <h3 class="modal-title">Modal!</h3>
+    <h3 class="modal-title">Create Your Event</h3>
 </div>
 <div class="modal-body">
-    <ul>
-        <li ng-repeat="item in items">
-            <a ng-click="selected.item = item">{{ item }}</a>
-        </li>
-    </ul>
-    Selected: <b>{{ selected.item }}</b>
+    <form name="newThreadForm" class="form-horizontal m-t-lg">
+      <div class="form-group">
+        <label class="col-lg-2 control-label">Event Title</label>
+        <div class="col-lg-8">
+          <input type="text" class="form-control" ng-model="newEventTitle">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-2 control-label">Event Text</label>
+        <div class="col-lg-8">
+          <textarea type="text" rows="5" class="form-control" ng-model="newEventDescription"></textarea>
+        </div>
+      </div>
+<!--       <div class="form-group">
+        <div class="col-lg-8 col-lg-offset-2">
+          <button ng-disabled="newThreadForm.$invalid" ng-click="createThread(user.username, newThreadTitle, newThreadText)" class="btn btn-sm btn-danger w-xs font-bold">Add Thread</button>
+        </div>
+      </div> -->
+    </form>
 </div>
 <div class="modal-footer">                  
     <button class="btn btn-default" ng-click="cancel()">Cancel</button>
