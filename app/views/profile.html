@@ -6,6 +6,7 @@
           <div class="col-sm-7">
             <a href class="thumb-lg pull-left m-r">
               <img ng-src="{{user.profileImage}}" class="img-circle">
+              <img src="img/a4.jpg" alt="..." class="img-circle" ng-show="!user.profileImage">
             </a>
             <div class="clear m-b">
               <div class="m-b m-t-sm">
@@ -66,11 +67,11 @@
         <ul class="list-group no-bg no-borders pull-in">
           <li class="list-group-item" ng-repeat="member in members">
             <a herf class="pull-left thumb-sm avatar m-r">
-              <img src="img/a4.jpg" alt="..." class="img-circle">
-              <i class="on b-white bottom"></i>
+              <img src="img/a4.jpg" class="img-circle" ng-show="!member.profileImage">
+              <img ng-src="{{member.profileImage}}" class="img-circle">
             </a>
             <div class="clear">
-              <div><a href>{{member.username}}</a></div>
+              <div><a ng-click="viewMember(member)">{{member.username}}</a></div>
               <small class="text-muted">{{member.job}}</small>
             </div>
           </li>

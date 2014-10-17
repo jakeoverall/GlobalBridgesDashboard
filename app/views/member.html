@@ -5,7 +5,8 @@
         <div class="row m-t">
           <div class="col-sm-7">
             <a href class="thumb-lg pull-left m-r">
-              <img src="img/a0.jpg" class="img-circle">
+              <img ng-src="{{member.profileImage}}" class="img-circle">
+              <img src="img/a4.jpg" alt="..." class="img-circle" ng-show="!member.profileImage">
             </a>
             <div class="clear m-b">
               <div class="m-b m-t-sm">
@@ -22,11 +23,11 @@
         </div>
       </div>
     </div>
-    <div class="wrapper bg-white b-b">
+<!--     <div class="wrapper bg-white b-b">
       <ul class="nav nav-pills nav-sm" ng-show="user">
         <li class="active"><a ui-sref="secure.editprofile">Edit Profile</a></li>
       </ul>
-    </div>
+    </div> -->
     <br>
     <div class="row">
       <div class="padder">
@@ -66,11 +67,11 @@
         <ul class="list-group no-bg no-borders pull-in">
           <li class="list-group-item" ng-repeat="member in members">
             <a herf class="pull-left thumb-sm avatar m-r">
-              <img src="img/a4.jpg" alt="..." class="img-circle">
-              <i class="on b-white bottom"></i>
+              <img src="img/a4.jpg" class="img-circle" ng-show="!member.profileImage">
+              <img ng-src="{{member.profileImage}}" class="img-circle">
             </a>
             <div class="clear">
-              <div><a href>{{member.username}}</a></div>
+              <div><a ng-click="viewMember(member)">{{member.username}}</a></div>
               <small class="text-muted">{{member.job}}</small>
             </div>
           </li>
