@@ -1,4 +1,4 @@
-<div ng-controller="FullcalendarCtrl">
+<div>
   <div class="wrapper-md bg-light b-b">
     <button type="button" class="btn btn-default btn-addon pull-right m-t-n-xs" ui-toggle-class="show" target="#aside" ng-click="renderCalender(calendar1)">
       <i class="fa fa-bars"></i> List
@@ -46,4 +46,22 @@
       </div>
     </div>
   </div>
+
 </div>
+
+<div ng-controller="ModalDemoCtrl" class="panel b-a">
+          <script type="text/ng-template" id="myModalContent.html">
+            <div ng-include="'views/calendar-modal.html'"></div>
+          </script>
+          <div class="panel-heading b-b b-light">Modal</div>
+          <div class="panel-body">
+            <button class="btn btn-success" ng-click="open()">Open me!</button>
+            <button class="btn btn-default" ng-click="open('lg')">Large modal</button>
+            <button class="btn btn-default" ng-click="open('sm')">Small modal</button>
+          </div>
+      </div>
+
+
+<button type="button" class="btn btn-sm btn-primary btn-addon" ng-click="open()">
+          <i class="fa fa-plus"></i>Add
+        </button>

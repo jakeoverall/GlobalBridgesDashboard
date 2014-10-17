@@ -21,8 +21,8 @@ angular.module('app.controllers.committees', [])
     };
 
     $scope.viewCommittee = function(committee){
-      debugger;
     	$state.go('secure.committee', {committeeId: committee.$id});
+      $scope.user.$save();
     }
 
     $scope.edit = function (item) {

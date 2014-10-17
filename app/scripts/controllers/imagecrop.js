@@ -6,6 +6,12 @@ angular.module('app.controllers.imagecrop', [])
     $scope.myCroppedImage='';
     $scope.cropType="circle";
 
+    $scope.saveProfileImage = function () {
+      debugger;
+      $scope.user.profileImage = $scope.myCroppedImage;
+      $scope.user.$save();
+    }
+
     var handleFileSelect=function(evt) {
       var file=evt.currentTarget.files[0];
       var reader = new FileReader();

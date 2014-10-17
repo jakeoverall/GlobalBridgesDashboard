@@ -41,6 +41,7 @@ var app = angular.module('app', [
     'app.controllers.committees',
     'app.controllers.committee',
     'app.controllers.imagecrop',
+    'app.controllers.eventmodal',
     // 'app.controllers.calendar',
     // Services
     'app.services.environment',
@@ -360,11 +361,12 @@ var app = angular.module('app', [
             .state('secure.calendar', {
                 url: '/calendar',
                 templateUrl: 'views/calendar.html',
+                controller: 'FullcalendarCtrl',
                 // use resolve to load other dependences
                 resolve: {
-                    // eventsRef: function (CalendarService) {
-                    //   return CalendarService.getEvents();
-                    // },
+                    eventsRef: function (CalendarService) {
+                      return CalendarService.getEvents();
+                    },
                     // eventRef: function (CalendarService, $stateParams) {
                     //   return CalendarService.getEvent($stateParams.eventId);
                     // },

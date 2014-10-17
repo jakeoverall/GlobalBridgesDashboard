@@ -6,7 +6,7 @@
 <div class="container-fluid">
 <script type="text/ng-template" id="items_renderer.html">
   <label>
-      <span class="pull-left" style="margin-left:15px; margin-top:15px; margin-bottom:15px"><i class="fa fa-sort text-muted fa m-r-sm"></i> </span>
+      
       <span class="clear" style="margin-left:40px; margin-top:15px; margin-bottom:15px" ng-show="!item.editing">{{item.name}}</span>
                 <form class="form-horizontal" action="" ng-submit="doneEditing(item)" ng-show="item.editing" data-nodrag>
                   <div class="form-group">
@@ -55,24 +55,6 @@
                   		<input type="submit" value="Add Committee">
 
                   	</form>
-
-
-                    <!-- <form class="form-horizontal" name="create_task" ng-submit="newItem()" ng-show="showForm">
-                      <br>
-                      <div class="form-group">
-                        <div class="col-lg-8 col-md-7 col-sm-6 col-xs-5">
-                          <input type="text" class="form-control no-validate" ng-model="newTaskTitle" placeholder="Task title...">
-                        </div>
-                        
-                        <div class="col-md-2 col-lg-1">
-                            <input
-                              class="btn btn-primary btn-block"
-                              value="Add"
-                              type="submit"
-                            />
-                        </div>
-                      </div>    
-                    </form>   -->
                   </div>
                   <div ui-tree="options" class="tasklist">
                     <ol ui-tree-nodes ng-model="committees" class="panel-tasks">
@@ -85,21 +67,6 @@
                       ></li>
                     </ol>
                   </div>
-        </tab>
-        <tab active="showCompletedTab">
-          <tab-heading><i class="fa fa-check"></i> Completed <span class="badge badge-success">{{tasksComplete.length}}</span></tab-heading>
-          <div class="tasklist">
-            <ol class="panel-tasks">
-              <li ng-repeat="item in tasksComplete" class="list-group-item">
-                  <span class="pull-right">
-                    <a href ng-click="incomplete(item, $index)"><i class="fa fa-undo fa-fw m-r-xs"></i></a>
-                  </span>
-                  <label>
-                    <span class="task-description">{{item.title}}</span>
-                  </label>
-              </li>
-            </ol>
-          </div>
         </tab>
       </tabset>
     </div>

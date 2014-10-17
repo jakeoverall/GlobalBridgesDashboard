@@ -2,7 +2,7 @@
  * calendarDemoApp - 0.1.3
  */
 
-app.controller('FullcalendarCtrl', ['$scope', function($scope) {
+app.controller('FullcalendarCtrl', ['$scope', 'eventsRef', function($scope, eventsRef) {
 
     var date = new Date();
     var d = date.getDate();
@@ -17,22 +17,29 @@ app.controller('FullcalendarCtrl', ['$scope', function($scope) {
     };
 
     /* event source that contains custom events on the scope */
-    $scope.events = [
-      {title:'Lorem ipsum', start: new Date(y, m, 1), className: ['b-l b-2x b-info'], location:'Seoul', info:'This a all day event that will start from 9:00 am to 9:00 pm, have fun!'},
-      {title:'Lorem ipsum', start: new Date(y, m, 6, 16, 0), className: ['b-l b-2x b-info'], location:'Seoul', info:'The most big racing of this year.'},
-    ];
+   // $scope.events = [
+   //    {title:'Lorem ipsum', start: new Date(y, m, 1), className: ['b-l b-2x b-info'], location:'Seoul', info:'This a all day event that will start from 9:00 am to 9:00 pm, have fun!'},
+   //    {title:'Lorem ipsum', start: new Date(y, m, 6, 16, 0), className: ['b-l b-2x b-info'], location:'Seoul', info:'The most big racing of this year.'},
+   //  ]; 
 
     /* alert on eventClick */
     $scope.alertOnEventClick = function( event, jsEvent, view ){
-       
+      event.title = "SOmething Else";
+      $scope.events.$save(event);
     };
     /* alert on Drop */
     $scope.alertOnDrop = function(event, delta, revertFunc, jsEvent, ui, view){
+      event.start += delta;
+      $scope.events.$save(event); 
+
        $scope.alertMessage = ('Event Droped to make dayDelta ' + delta);
     };
     /* alert on Resize */
     $scope.alertOnResize = function(event, delta, revertFunc, jsEvent, ui, view){
        $scope.alertMessage = ('Event Resized to make dayDelta ' + delta);
+       event.start = event.start.toISOString();
+       event.end += delta;
+       $scope.events.$save(event)
     };
 
     $scope.overlay = $('.fc-overlay');
@@ -69,19 +76,21 @@ app.controller('FullcalendarCtrl', ['$scope', function($scope) {
         eventMouseover: $scope.alertOnMouseOver
       }
     };
-    
+
+    $scope.events = eventsRef.$asArray();    
     /* add custom event*/
     $scope.addEvent = function() {
-      $scope.events.push({
-        title: 'New Event',
-        start: new Date(y, m, d),
-        className: ['b-l b-2x b-info']
-      });
+      var newEvent = {
+        title: 'Test',
+        start: new Date().toISOString(),
+        end: new Date().toISOString()
+      } 
+      $scope.events.$add(newEvent);
     };
 
     /* remove event */
     $scope.remove = function(index) {
-      $scope.events.splice(index,1);
+      $scope.events.$remove(index);
     };
 
     /* Change View */
