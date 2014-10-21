@@ -3,10 +3,17 @@
 angular.module('app.controllers.eventmodal', [])
 .controller('EventModalCtrl', ['$scope', '$modal', '$log', function($scope, $modal, $log) {
     
-    var ModalInstanceCtrl = function ($scope, $modalInstance, items) {
+    var ModalInstanceCtrl = function ($scope, $modalInstance, $firebase, EnvironmentService) {
+    console.log($modal)
+     var firebaseUrl = EnvironmentService.getEnv().firebase;             
      
-      $scope.ok = function () {
-        $modalInstance.close($scope.selected.item);
+     $scope.events = $firebase(new Firebase(firebaseUrl + '/events')).$asArray();
+
+      $scope.ok = function (event) {
+        event.start = new Date(event.start).toISOString();
+        event.end = new Date(event.end).toISOString();
+        $scope.events.$add(event);
+        $modalInstance.close();
       };
 
       $scope.cancel = function () {
@@ -18,12 +25,7 @@ angular.module('app.controllers.eventmodal', [])
       var modalInstance = $modal.open({
         templateUrl: 'myModalContent.html',
         controller: ModalInstanceCtrl,
-        size: size,
-        resolve: {
-          items: function () {
-            return $scope.items;
-          }
-        }
+        size: size
       });
 
       modalInstance.result.then(function (selectedItem) {
@@ -32,4 +34,4 @@ angular.module('app.controllers.eventmodal', [])
         $log.info('Modal dismissed at: ' + new Date());
       });
     };
-  }])
+}])
