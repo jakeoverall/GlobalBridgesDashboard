@@ -1,4 +1,3 @@
-<!-- first -->
 <ul class="nav">
   <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
     <span>Navigation</span>
@@ -70,13 +69,42 @@
         </a>
       </li>
       <li>
-        <a ui-sref="secure.threads">
+        <a ui-sref="secure.search">
+          <span>Search Members</span>
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a ui-sref="secure.threads" class="auto">
+      <span class="pull-right text-muted">
+        <i class="fa fa-fw fa-angle-right text"></i>
+        <i class="fa fa-fw fa-angle-down text-active"></i>
+      </span>
+      <i class="glyphicon glyphicon-comment icon"></i>
+      <span class="font-bold">Forums</span>
+    </a>
+    <ul class="nav nav-sub dk">
+      <li class="nav-sub-header">
+        <a href>
           <span>Forums</span>
         </a>
       </li>
-      <li>
-        <a ui-sref="secure.search">
-          <span>Search Members</span>
+    </ul>
+  </li>
+  <li>
+    <a ui-sref="secure.projects" class="auto">
+      <span class="pull-right text-muted">
+        <i class="fa fa-fw fa-angle-right text"></i>
+        <i class="fa fa-fw fa-angle-down text-active"></i>
+      </span>
+      <i class="glyphicon glyphicon-globe icon"></i>
+      <span class="font-bold">Projects</span>
+    </a>
+    <ul class="nav nav-sub dk">
+      <li class="nav-sub-header">
+        <a href>
+          <span>Projects</span>
         </a>
       </li>
     </ul>
@@ -97,7 +125,7 @@
         </a>
       </li>
       <li>
-        <a ui-sref="secure.profile">
+        <a ui-sref="secure.committees">
           <span>Join a Committee</span>
         </a>
       </li>
@@ -154,17 +182,17 @@
         </a>
       </li>
       <li>
-        <a ui-sref="secure.profile">
+        <a ui-sref="secure.pay">
           <span>Our Club Story</span>
         </a>
       </li>
       <li>
-        <a ui-sref="secure.profile">
+        <a ui-sref="secure.todo">
           <span>Members Handbook</span>
         </a>
       </li>
       <li>
-        <a ui-sref="secure.profile">
+        <a ui-sref="secure.signup">
           <span>Club Constitution</span>
         </a>
       </li>
@@ -180,7 +208,38 @@
       </li>
     </ul>
   </li>
+  <li>
+    <a href class="auto">      
+      <span class="pull-right text-muted">
+        <i class="fa fa-fw fa-angle-right text"></i>
+        <i class="fa fa-fw fa-angle-down text-active"></i>
+      </span>
+      <span class="font-bold">Admin</span>
+    </a>
+    <ul class="nav nav-sub dk">
+      <li class="nav-sub-header">
+        <a href>
+          <span>Admin</span>
+        </a>
+      </li>
+      <li>
+        <a ui-sref="secure.admin">
+          <span>Words</span>
+        </a>
+      </li>
+      <li>
+        <a ui-sref="secure.pay">
+          <span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a ui-sref="secure.todo">
+          <span>Member Management</span>
+        </a>
+      </li>
+    </ul>
+  </li>
 
   <li class="line dk hidden-folded"></li>
 </ul>
-<!-- / third -->
+<!-- / third

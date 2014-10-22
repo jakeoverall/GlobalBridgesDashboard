@@ -6,18 +6,13 @@
     <div class="col-sm-11">
     	<div class="panel">
           <div class="wrapper-lg">
-            <h2 class="m-t-none">{{ thread.title }}</h2>
             <div>
               <p>{{ thread.text }}</p>
-            </div>
-            <div class="line line-lg b-b b-light"></div>
-            <div class="text-muted">
-              <i class="fa fa-user text-muted"></i> by <a href class="m-r-sm">{{ thread.username }}</a>
-              <!-- <a href class="m-l-sm"><i class="fa fa-comment-o text-muted"></i> 2 comments</a> -->
             </div>
           </div>
         </div>
 	<h4 class="m-t-lg m-b">Comments</h4>
+	
 	      <div ng-repeat="comment in comments">
 	        <div>
 	          <a class="pull-left thumb-sm">

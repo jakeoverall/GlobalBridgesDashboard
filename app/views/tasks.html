@@ -1,4 +1,116 @@
 <div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Committee Tasks</h1>
+</div>
+<hr>
+
+<div class="container-fluid">
+<script type="text/ng-template" id="items_renderer.html">
+  <label>
+      <span class="pull-left" style="margin-left:15px; margin-top:15px; margin-bottom:15px"><i class="fa fa-sort text-muted fa m-r-sm"></i> </span>
+      <span class="clear" style="margin-left:40px; margin-top:15px; margin-bottom:15px" ng-show="!item.editing">{{item.name}}</span>
+                <form class="form-horizontal" action="" ng-submit="doneEditing(item)" ng-show="item.editing" data-nodrag>
+                  <div class="form-group">
+                    <div class="col-lg-4 col-xs-5">
+                      <input style="margin-top:10px" type="text" class="form-control no-validate" ng-model="item.name" placeholder="Task title...">
+                    </div>
+                    <div class="col-lg-4 col-xs-4">
+                      <div class="form-group">
+
+                  <div class="input-group-btn">
+                    <div class="btn-group" dropdown style="">
+                      <button type="button" class="btn btn-lg btn-default dropdown-toggle">
+                        <div class="label label-{{item.color||'app.color.primary'}} color-block"></div>
+                      </button>
+                      <ul class="dropdown-menu dropdown-colors" role="menu">
+                                  <li><span class="label label-success" ng-click="item.color='app.color.success'"></span></li>
+                                  <li><span class="label label-primary" ng-click="item.color='app.color.primary'"></span></li>
+                                  <li><span class="label label-warning" ng-click="item.color='app.color.warning'"></span></li>
+                                  <li><span class="label label-danger" ng-click="item.color='app.color.danger'"></span></li>
+                                  <li><span class="label label-info" ng-click="item.color='app.color.info'"></span></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                    </div>
+              <div class="col-lg-2 col-xs-3">
+                        
+                        <input style="margin-top:10px" type="submit" class="btn btn-primary btn-sm clear" value="Save" />
+                        <input style="margin-top:10px" ng-click="cancelEdit(item)" class="btn btn-primary btn-sm clear" value="Cancel" />
+                      </div>
+                  </div>
+                </form>
+  </label>
+  <div class="options todooptions pull-right">
+      <div class="btn-group" ng-show="!item.editing" style="margin-top:15px">
+          
+          <button data-nodrag class="btn btn-default btn-xs" ng-click="completeTask(item)"><i class="fa fa-fw fa-check"></i></button>
+          <button data-nodrag class="btn btn-default btn-xs" ng-click="edit(item)"><i class="fa fa-fw fa-pencil"></i></button>
+          <button data-nodrag class="btn btn-default btn-xs" ng-click="removeTask(item)"><i class="fa fa-fw fa-trash-o"></i></button>
+      </div>
+  </div>
+</script>
+
+  <div class="row">
+    <div class="col-xs-12">
+
+      <tabset panel-tabs="true" panel-class="panel-sky">
+        <panel-controls class="pull-right">
+          <button class="btn btn-primary btn-sm" ng-click="showForm=true;showTasksTab=true;showCompletedTab=false" style="margin-top: -5px;">Add Task</button>
+        </panel-controls>
+        <tab active="showTasksTab">
+          <tab-heading><i class="fa fa-tasks"></i> To-do <span class="badge badge-primary"></span></tab-heading>
+                  <div>
+
+                    <form class="form-horizontal" name="create_task" ng-submit="newItem(task)" ng-show="showForm">
+                      <br>
+                      <div class="form-group">
+                        <div class="col-lg-8 col-md-7 col-sm-6 col-xs-5">
+                          <input type="text" class="form-control no-validate" ng-model="task.name" placeholder="Task title...">
+                        </div>
+                        
+                        <div class="col-md-2 col-lg-1">
+                            <input
+                              class="btn btn-primary btn-block"
+                              value="Add"
+                              type="submit"
+                            />
+                        </div>
+                      </div>    
+                    </form>  
+                  </div>
+                  <div ui-tree="options" class="tasklist">
+                    <ol ui-tree-nodes ng-model="tasks" class="panel-tasks">
+                      <li
+                        ui-tree-node
+                        ui-tree-handle
+                        class="list-group-item"
+                        ng-repeat="item in tasks | filter: {completed: 'false'}"
+                        ng-include="'items_renderer.html'"
+                      ></li>
+                    </ol>
+                  </div>
+        </tab>
+        <tab active="showCompletedTab">
+          <tab-heading><i class="fa fa-check"></i> Completed <span class="badge badge-success">{{tasksComplete.length}}</span></tab-heading>
+          <div class="tasklist">
+            <ol class="panel-tasks">
+              <li ng-repeat="item in tasks | filter: {completed: 'true'}" class="list-group-item">
+                  <span class="pull-right">
+                    <a href ng-click="incompleteTask(item)"><i class="fa fa-undo fa-fw m-r-xs"></i></a>
+                  </span>
+                  <label>
+                    <span class="task-description">{{item.name}}</span>
+                  </label>
+              </li>
+            </ol>
+          </div>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div> <!-- container -->
+
+<!-- <div class="bg-light lter b-b wrapper-md">
   <h1 class="m-n font-thin h3">Committee</h1>
 </div>
 <div class="wrapper b-b bg">
@@ -8,26 +120,24 @@
 <div class="wrapper-md">
   <div class="row">
     <div class="col-sm-11">
-      <div>                   
-        <div class="panel" ng-repeat="task in tasks">
-          <div class="wrapper-lg">
-            <h2 class="m-t-none"><a ui-sref="secure.task({taskId: task.$id})">{{ task.title }}</a></h2>
-            <div>
-              <p>{{ task.text }}</p>
+      <div>
+        <ul ui-jq="sortable" class="list-group gutter list-group-lg list-group-sp">
+          <li ng-repeat="task in tasks" class="list-group-item bg-primary">
+            <span class="pull-right">
+              <a ui-sref="secure.task({taskId: task.$id})"><i class="fa fa-pencil fa-fw m-r-xs"></i></a>
+            </span>
+            <span class="pull-left"><i class="fa fa-sort text-muted fa m-r-sm"></i> </span>
+            <div class="clear">
+              <a href>{{task.title}}</a>
             </div>
-            <div class="line line-lg b-b b-light"></div>
-            <div class="text-muted">
-              <i class="fa fa-user text-muted"></i> by <a href class="m-r-sm">{{ task.username }}</a>
-              <!-- <a href class="m-l-sm"><i class="fa fa-comment-o text-muted"></i> 2 comments</a> -->
-            </div>
-          </div>
-        </div>
+          </li>
+        </ul>                  
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
-<div class="wrapper-md">
+<!-- <div class="wrapper-md">
   <div class="row">
     <div class="col-sm-10" data-ng-controller="taskCtrl">
       <section class="task-container">
@@ -56,7 +166,7 @@
                 </section>
                
                 <section class="col-md-11">
-                    <ul class="task-list list-unstyled">
+                    <ul ui-jq="sortable" class="task-list list-unstyled">
                         <li data-ng-repeat="task in tasks | filter:statusFilter track by $index" 
                             data-ng-class="{completed: task.completed, editing: task == editedTask}">
                             <span class="view">
@@ -65,6 +175,7 @@
                                        data-ng-model="task.completed"
                                        data-ng-change="completed(task)">
                                 <label data-ng-dblclick="edit(task)">{{task.title}}</label>
+                              
                                 <span class="glyphicon glyphicon-pencil"
                                       data-ng-click="edit(task)"></span>
                                 <span class="glyphicon glyphicon-remove"
@@ -110,4 +221,4 @@
         </section>
     </div>
   </div>
-</div>
+</div> -->

@@ -9,6 +9,8 @@ var app = angular.module('app', [
     'ui.router',
     'ngRoute', 
     'ui.bootstrap',
+    'ui.tree',
+    'ngImgCrop',
     'ui.load',
     'ui.jq',
     'ui.validate',
@@ -28,12 +30,32 @@ var app = angular.module('app', [
     'app.controllers.threads',
     'app.controllers.tasks',
     'app.controllers.task',
+    'app.controllers.words',
+    'app.controllers.word',
     'app.controllers.profile',
+    'app.controllers.dashboard',
+    'app.controllers.signup',
+    'app.controllers.meeting',
+    'app.controllers.projects',
+    'app.controllers.project',
+    'app.controllers.committees',
+    'app.controllers.committee',
+    'app.controllers.imagecrop',
+    'app.controllers.eventmodal',
+    // 'app.controllers.calendar',
     // Services
     'app.services.environment',
     'app.services.thread',
     'app.services.task',
-    'app.services.user'
+    'app.services.user',
+    'app.services.admin',
+    'app.services.underscore',
+    'app.services.twitterApp',
+    'app.services.members',
+    'app.services.calendar',
+    'app.services.signup',
+    'app.services.committees',
+    'app.services.projects'
   ])
 .run(
   [          '$rootScope', '$state', '$stateParams',
@@ -45,7 +67,7 @@ var app = angular.module('app', [
 )
 .config(
   [          '$stateProvider', '$urlRouterProvider', '$controllerProvider', '$compileProvider', '$filterProvider', '$provide',
-    function ($stateProvider,   $urlRouterProvider,   $controllerProvider,   $compileProvider,   $filterProvider,   $provide) {
+    function ($stateProvider,   $urlRouterProvider,   $controllerProvider,   $compileProvider,   $filterProvider, $provide) {
         
         // lazy controller, directive and service
         app.controller = $controllerProvider.register;
@@ -56,8 +78,12 @@ var app = angular.module('app', [
         app.constant   = $provide.constant;
 
         $urlRouterProvider
-            .otherwise('/register');
-        $stateProvider            
+            .otherwise('/home');
+        $stateProvider
+            .state('home', {
+              url: '/home',
+              templateUrl: 'views/home.html'
+            })            
             .state('login', {
               url: '/login',
               templateUrl: 'views/login.html',
@@ -67,6 +93,16 @@ var app = angular.module('app', [
               url: '/register',
               templateUrl: 'views/register.html',
               controller: 'LoginCtrl'
+            })
+            .state('apply', {
+              url: '/apply',
+              templateUrl: 'views/signup.html',
+              controller: 'SignupCtrl',
+              resolve: {
+                applicantsRef: function (SignupService) {
+                  return SignupService.getApplicants();
+                }
+              }
             })
             .state('forgotpwd', {
                 url: '/forgotpwd',
@@ -97,6 +133,9 @@ var app = angular.module('app', [
               resolve: {
                 threadsRef: function (ThreadService) {
                   return ThreadService.getThreads();
+                },
+                threadRef: function (ThreadService, $stateParams) {
+                  return ThreadService.getThread($stateParams.threadId);
                 }
               }
             })
@@ -120,74 +159,217 @@ var app = angular.module('app', [
               resolve: {
                 threadsRef: function (ThreadService) {
                   return ThreadService.getThreads();
+                },
+                threadRef: function (ThreadService, $stateParams) {
+                  return ThreadService.getThread($stateParams.threadId);
                 }
               }
             })
             .state('secure.dashboard', {
                 url: '/dashboard',
-                templateUrl: 'views/dashboard.html'
+                templateUrl: 'views/dashboard.html',
+                controller: 'DashboardCtrl',
+                resolve: {
+                  membersRef: function (MembersService) {
+                    return MembersService.getMembers();
+                  },
+                  memberRef: function (MembersService, $stateParams) {
+                    return MembersService.getMember($stateParams.memberId);
+                  },
+                  wordsRef: function (AdminService) {
+                    return AdminService.getWords();
+                  },
+                  wordRef: function (AdminService, $stateParams) {
+                    return AdminService.getWord($stateParams.wordId);
+                  },
+                  publishedNewsRef: function (AdminService) {
+                  return AdminService.getPublishedNews();
+                  },
+                  publishedMessagesRef: function (AdminService) {
+                    return AdminService.getPublishedMessages();
+                  }
+                }
+
+            })
+            .state('secure.search', {
+                url: '/search',
+                templateUrl: 'views/search.html',
+                controller: 'ProfileCtrl',
+                resolve: {
+                  membersRef: function (MembersService) {
+                    return MembersService.getMembers();
+                  },
+                  memberRef: function (MembersService, $stateParams) {
+                    return MembersService.getMember($stateParams.memberId);
+                  }
+              }
+            })
+            .state('secure.member', {
+                url: '/member:memberId',
+                templateUrl: 'views/member.html',
+                controller: 'ProfileCtrl',
+                resolve: {
+                    // currentUser: function (UserService) {
+                    // return UserService.getCurrentUser();
+                    // },
+                    // user: function (UserService) {
+                    // return UserService.getUser();
+                    // },
+                    membersRef: function (MembersService) {
+                    return MembersService.getMembers();
+                    },
+                    memberRef: function (MembersService, $stateParams) {
+                      return MembersService.getMember($stateParams.memberId);
+                    }
+                }
             })
             .state('secure.profile', {
                 url: '/profile',
                 templateUrl: 'views/profile.html',
                 controller: 'ProfileCtrl',
                 resolve: {
-                    currentUser: function (UserService) {
-                    return UserService.getCurrentUser();
+                    // currentUser: function (UserService) {
+                    // return UserService.getCurrentUser();
+                    // },
+                    // user: function (UserService) {
+                    // return UserService.getUser();
+                    // },
+                    membersRef: function (MembersService) {
+                    return MembersService.getMembers();
                     },
-                    user: function (UserService) {
-                    return UserService.getUser();
+                    memberRef: function (MembersService, $stateParams) {
+                      return MembersService.getMember($stateParams.memberId);
                     }
                 }
             })
+            .state('secure.editprofile', {
+                url: '/editprofile',
+                templateUrl: 'views/edit-profile.html',
+                controller: 'ProfileCtrl',
+                resolve: {
+                    // currentUser: function (UserService) {
+                    // return UserService.getCurrentUser();
+                    // },
+                    // user: function (UserService) {
+                    // return UserService.getUser();
+                    // },
+                    membersRef: function (MembersService) {
+                    return MembersService.getMembers();
+                    },
+                    memberRef: function (MembersService, $stateParams) {
+                      return MembersService.getMember($stateParams.memberId);
+                    }
+                }
+            })
+            .state('secure.image', {
+              url: '/image',
+              templateUrl: 'views/image.html',
+              controller: 'ImgCropCtrl'
+            })
             .state('secure.meeting', {
                 url: '/meeting',
-                templateUrl: 'views/meeting.html'
-            })
-            .state('secure.tasks', {
-                url: '/tasks',
-                templateUrl: 'views/tasks.html',
-                controller: 'TasksCtrl',
+                templateUrl: 'views/meeting.html',
+                controller: 'MeetingCtrl',
                 resolve: {
-                 tasksRef: function (TaskService) {
-                    return TaskService.getTasks();
-                 }
+                  membersRef: function (MembersService) {
+                    return MembersService.getMembers();
+                  },
+                  memberRef: function (MembersService, $stateParams) {
+                    return MembersService.getMember($stateParams.memberId);
+                  },
+                  publishedPostsRef: function (AdminService) {
+                  return AdminService.getPublishedPosts();
+                  },
+                  commentsRef: function (AdminService) {
+                  return AdminService.getComments();
+                  }
                 }
             })
-            .state('secure.task', {
-              url: '/task/:taskId',
-              templateUrl: 'views/task.html',
-              controller: 'TaskCtrl',
+            .state('secure.committees', {
+                url: '/committees',
+                templateUrl: 'views/committees.html',
+                controller: 'CommitteesCtrl',
+                resolve: {
+                  committeesRef: function (CommitteesService) {
+                    return CommitteesService.getCommittees();
+                  }
+                }
+            })
+            .state('secure.committee', {
+                url: '/committee/:committeeId',
+                templateUrl: 'views/tasks.html',
+                controller: 'CommitteeCtrl',
+                resolve: {
+                  committeeRef: function (CommitteesService, $stateParams) {
+                    return CommitteesService.getCommittee($stateParams.committeeId);
+                  },
+                  tasksRef: function(CommitteesService, $stateParams){
+                    return CommitteesService.getTasks($stateParams.committeeId);
+                  }
+                }
+            })
+            .state('secure.projects', {
+                url: '/projects',
+                templateUrl: 'views/projects.html',
+                controller: 'ProjectsCtrl',
+                resolve: {
+                  projectsRef: function (ProjectsService) {
+                    return ProjectsService.getProjects();
+                  }
+                }
+            })
+            .state('secure.project', {
+              url: '/project/:projectId',
+              templateUrl: 'views/project-detail.html',
+              controller: 'ProjectCtrl',
               resolve: {
-                taskRef: function (TaskService, $stateParams) {
-                  return TaskService.getTask($stateParams.taskId);
-                },
-                commentsRef: function (TaskService, $stateParams) {
-                  return TaskService.getComments($stateParams.taskId);
+                  projectRef: function (ProjectsService, $stateParams) {
+                    return ProjectsService.getProject($stateParams.projectId);
+                  }
                 }
-              }
             })
-            .state('secure.newtask', {
-              url: '/newtask',
-              templateUrl: 'views/newtask.html',
-              controller: 'TasksCtrl',
-              resolve: {
-                tasksRef: function (TaskService) {
-                  return TaskService.getTasks();
-                }
-              }
-            })
-            .state('secure.search', {
-                url: '/search',
-                templateUrl: 'views/search.html'
+            // .state('secure.task', {
+            //   url: '/task/:taskId',
+            //   templateUrl: 'views/task.html',
+            //   controller: 'TaskCtrl',
+            //   resolve: {
+            //     taskRef: function (TaskService, $stateParams) {
+            //       return TaskService.getTask($stateParams.taskId);
+            //     },
+            //     commentsRef: function (TaskService, $stateParams) {
+            //       return TaskService.getComments($stateParams.taskId);
+            //     }
+            //   }
+            // })
+            // .state('secure.newtask', {
+            //   url: '/newtask',
+            //   templateUrl: 'views/newtask.html',
+            //   controller: 'TasksCtrl',
+            //   resolve: {
+            //     tasksRef: function (TaskService) {
+            //       return TaskService.getTasks();
+            //     }
+            //   }
+            // })
+            .state('secure.twitter', {
+                url: '/twitter',
+                templateUrl: 'views/twitter.html',
+                controller: 'TwitterCtrl'
             })
 
             // fullCalendar
             .state('secure.calendar', {
                 url: '/calendar',
                 templateUrl: 'views/calendar.html',
+                controller: 'FullcalendarCtrl',
                 // use resolve to load other dependences
                 resolve: {
+                    eventsRef: function (CalendarService) {
+                      return CalendarService.getEvents();
+                    },
+                    // eventRef: function (CalendarService, $stateParams) {
+                    //   return CalendarService.getEvent($stateParams.eventId);
+                    // },
                     deps: ['uiLoad',
                       function( uiLoad ){
                         return uiLoad.load( ['js/jquery/fullcalendar/fullcalendar.css',
@@ -225,6 +407,40 @@ var app = angular.module('app', [
             .state('secure.mail.compose', {
                 url: '/compose',
                 templateUrl: 'views/mail.new.html'
+            })
+
+            //admin
+            .state('secure.admin', {
+              url: '/words',
+              templateUrl: 'views/admin-words.html',
+              controller: 'WordsCtrl',
+              resolve: {
+                wordsRef: function (AdminService) {
+                  return AdminService.getWords();
+                }
+              }
+            })
+            .state('secure.adminword', {
+              url: '/words/:wordId',
+              templateUrl: 'views/admin-word.html',
+              controller: 'WordCtrl',
+              resolve: {
+                wordRef: function (AdminService, $stateParams) {
+                  return AdminService.getWord($stateParams.wordId);
+                },
+                draftsRef: function (AdminService, $stateParams) {
+                  return AdminService.getDrafts($stateParams.wordId);
+                },
+                publishedNewsRef: function (AdminService) {
+                  return AdminService.getPublishedNews();
+                },
+                publishedPostsRef: function (AdminService) {
+                  return AdminService.getPublishedPosts();
+                },
+                publishedMessagesRef: function (AdminService) {
+                  return AdminService.getPublishedMessages();
+                }
+              }
             })
     }
   ]

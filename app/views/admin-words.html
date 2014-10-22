@@ -1,0 +1,69 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Admin Drafts</h1>
+</div>
+<div class="wrapper-md">
+  <div class="row">
+	<div class="col-sm-8">
+	    <form name="newWordForm">
+	    	<div class="form-group">
+	        	<input id="new-word-title" type="text" ng-model="newWordTitle" placeholder="Name Your Draft..." class="form-control" required/>
+	    	</div>
+	    	<div class="form-group">
+	    		<select ui-jq="chosen" class="margin-zero" ng-model="word.type">
+	                <option value="Meeting Post">Meeting Post</option>
+	                <option value="Presidents Message">President's Message</option>
+	                <option value="News">Club News</option>
+	            </select>
+	    	</div>
+	        <button ng-click="createWord(newWordTitle, word.type)" ng-disabled="newWordForm.$invalid" class="btn btn-sm btn-primary">New Draft</button>
+	    </form>
+	</div>
+  </div>
+  <div class="row">
+  	<div class="col-sm-12">
+	    <hr>
+<!-- 	    <div class="wrapper b-t m-t-xxs">
+          <div class="input-group">
+            <span class="input-group-addon input-sm"><i class="fa fa-search"></i></span>
+            <input type="text" class="form-control input-sm" placeholder="search" ng-model="query">
+          </div>
+        </div> -->
+	    <table class="table table-striped m-b-none">
+	        <thead>
+	            <tr>
+	                <th>Author</th><th>Title</th><th>Type</th><th>Created On</th><th>Actions</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <tr ng-repeat="word in words | filter:query">
+	                <td>
+	                    {{ word.author.name }}
+	                </td>
+	                <td>
+	                    {{ word.title }}
+	                </td>
+	                <td>
+	                    {{ word.type }}
+	                </td>
+	                <td>{{ word.created | date:'MMM-dd-yyyy H:mm' }}</td>
+	                <td>
+	                    <span ng-show="draft.published">
+	                        {{ word.published.published | date }}
+	                        <a class="link-highlight0 link-hover-secondary0 margin-horizontal-xx-small" ng-click="unpublishWord(word)">X</a>
+	                    </span>
+	                    <span ng-hide="draft.published">
+	                        <button ui-sref="secure.adminword({wordId: word.$id})" class="btn m-b-xs w-xs btn-default">Edit</button>
+	                    </span>
+	                    <span>
+	                        <button class="btn m-b-xs w-xs btn-default" ng-hide="word.edited" qv-confirm="removeWord(draft, $index)">Delete</button>
+	                    </span>
+	                </td>
+	            </tr>
+	        </tbody>
+	    </table>
+	</div>
+  </div>
+</div>
+
+
+

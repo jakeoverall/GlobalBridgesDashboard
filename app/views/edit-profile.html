@@ -1,0 +1,133 @@
+<div class="hbox hbox-auto-xs hbox-auto-sm bg-light">
+
+  <!-- column -->
+  <div class="col bg-white-only">
+      <div class="wrapper-sm b-b">
+        <div class="m-t-n-xxs m-b-n-xxs m-l-xs">
+          <!-- <a class="btn btn-xs btn-default pull-right" ng-hide="!item" ng-click="deleteItem(item)"><i class="fa fa-times"></i></a> -->
+          <a class="btn btn-xs btn-default" ng-hide="user.editing" ng-click="editItem(item)">Edit</a>
+          <a class="btn btn-xs btn-default" ng-show="user.editing" ng-click="doneEditing(item)">Done</a>
+        </div>
+      </div>
+      <div class="row-row">
+        <div class="cell">
+          <div class="cell-inner">
+            <div class="wrapper-lg">
+              <div class="hbox h-auto m-b-lg">
+                <div class="col text-center w-sm">
+                  <div class="thumb-lg avatar inline">
+                    <img ng-src="{{item.avatar}}" ng-show="item.avatar">
+                  </div>
+                </div>
+                <div class="col v-middle h1 font-thin">
+                  <div ng-hide="user.editing">{{user.username}}</div>
+                  <div ng-show="user.editing">
+                    <input type="text" placeholder="Username" class="form-control w-auto input-lg m-b-n-xxs font-bold" ng-model="user.username" >
+                  </div>
+                </div>
+              </div>
+              <!-- fields -->
+              <div class="form-horizontal">
+                <div class="form-group m-b-sm">
+                  <label class="col-sm-3 control-label">Mobile Phone</label>
+                  <div class="col-sm-9">
+                    <p class="form-control-static" ng-hide="user.editing">{{user.mobile}}</p>
+                    <input type="text" class="form-control" ng-show="user.editing" ng-model="user.mobile" >
+                  </div>
+                </div>
+                <div class="form-group m-b-sm">
+                  <label class="col-sm-3 control-label">Home Phone</label>
+                  <div class="col-sm-9">
+                    <p class="form-control-static" ng-hide="user.editing">{{user.home}}</p>
+                    <input type="text" class="form-control" ng-show="user.editing" ng-model="user.home" >
+                  </div>
+                </div>
+                <div class="form-group m-b-sm">
+                  <label class="col-sm-3 control-label">Work Phone</label>
+                  <div class="col-sm-9">
+                    <p class="form-control-static" ng-hide="user.editing">{{user.work}}</p>
+                    <input type="text" class="form-control" ng-show="user.editing" ng-model="user.work" >
+                  </div>
+                </div>
+                <div class="line line-dashed b-b line-lg pull-in"></div>
+		        <div class="form-group m-b-sm">
+		          <label class="col-sm-3 control-label">Email</label>
+		          <div class="col-sm-9">
+		          	<p class="form-control-static" ng-hide="user.editing">{{user.email}}</p>
+                    <input type="text" class="form-control" ng-show="user.editing" ng-model="user.email" >                       
+		          </div>
+		        </div>
+		        <div class="line line-dashed b-b line-lg pull-in"></div>
+		        <div class="form-group m-b-sm">
+		          <label class="col-sm-3 control-label">Birthday</label>
+		          <div class="col-sm-9">
+		          	<p class="form-control-static" ng-hide="user.editing">{{user.birthday}}</p>
+                    <input type="text" class="form-control" ng-show="user.editing" ng-model="user.birthday" placeholder="YYYY-MM-DD" ng-pattern="/[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])$/">                       
+		          </div>
+		        </div>
+		        <div class="line line-dashed b-b line-lg pull-in"></div>
+		        <div class="form-group m-b-sm">
+		          <label class="col-sm-3 control-label">Address</label>
+		          <div class="col-sm-9">
+		          	<p class="form-control-static" ng-hide="user.editing">{{user.address}}</p>
+                    <input type="text" class="form-control" ng-show="user.editing" ng-model="user.address" >                       
+		          </div>
+		        </div>
+		        <div class="line line-dashed b-b line-lg pull-in"></div>
+		        <div class="form-group m-b-sm">
+		          <label class="col-sm-3 control-label">Address 2</label>
+		          <div class="col-sm-9">
+		          	<p class="form-control-static" ng-hide="user.editing">{{user.address2}}</p>
+                    <input type="text" class="form-control" ng-show="user.editing" ng-model="user.address2" >                       
+		          </div>
+		        </div>
+		        <div class="line line-dashed b-b line-lg pull-in"></div>
+		        <div class="form-group m-b-sm">
+		          <label class="col-sm-3 control-label">City</label>
+		          <div class="col-sm-9">
+		          	<p class="form-control-static" ng-hide="user.editing">{{user.city}}</p>
+                    <input type="text" class="form-control" ng-show="user.editing" ng-model="user.city" >                       
+		          </div>
+		        </div>
+		        <div class="line line-dashed b-b line-lg pull-in"></div>
+		        <div class="form-group m-b-sm">
+		          <label class="col-sm-3 control-label">State</label>
+		          <div class="col-sm-9">
+		          	<p class="form-control-static" ng-hide="user.editing">{{user.state}}</p>
+                    <input type="text" class="form-control" ng-show="user.editing" ng-model="user.state" >                       
+		          </div>
+		        </div>
+		        <div class="line line-dashed b-b line-lg pull-in"></div>
+		        <div class="form-group m-b-sm">
+		          <label class="col-sm-3 control-label">Country</label>
+		          <div class="col-sm-9">
+		          	<p class="form-control-static" ng-hide="user.editing">{{user.country}}</p>
+                    <input type="text" class="form-control" ng-show="user.editing" ng-model="user.country" >                       
+		          </div>
+		        </div>
+		        <div class="line line-dashed b-b line-lg pull-in"></div>
+		        <div class="form-group m-b-sm" ng-hide="!user.company && !user.editing">
+                  <label class="col-sm-3 control-label">Employer</label>
+                  <div class="col-sm-9">
+                    <p class="form-control-static" ng-hide="user.editing">{{user.company}}</p>
+                    <input type="text" class="form-control" ng-show="user.editing" ng-model="user.company" >
+                  </div>
+                </div>
+		        <div class="line line-dashed b-b line-lg pull-in"></div>
+		        <div class="form-group m-b-sm">
+		          <label class="col-sm-3 control-label">Job Title</label>
+		          <div class="col-sm-9">
+		          	<p class="form-control-static" ng-hide="user.editing">{{user.job}}</p>
+                    <input type="text" class="form-control" ng-show="user.editing" ng-model="user.job" >                       
+		          </div>
+		        </div>
+              </div>
+              <!-- / fields -->
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <!-- /column -->
+</div>
+<!-- /hbox layout

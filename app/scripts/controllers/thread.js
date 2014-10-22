@@ -12,6 +12,8 @@ angular.module('app.controllers.thread', [])
       $scope.comments.$add({
         username: username,
         text: text
+      }).then(function () {
+        $scope.newCommentText = "";
       });
     };
   });

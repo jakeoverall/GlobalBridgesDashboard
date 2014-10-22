@@ -1,75 +1,51 @@
-<div class="bg-light lter b-b wrapper-md">
-  <h1 class="m-n font-thin h3">Registration</h1>
+<div class="text-center m-b-lg">
+  <h1 class="text-shadow text-white">Global Bridges</h1>
 </div>
-<div class="wrapper-md">
-  <div class="row">
-    <form name="form" class="form-horizontal form-validation" data-ng-submit="register()">
-    <div class="panel panel-default">
-    <div class="panel-heading font-bold">
-      Registration Form
-    </div>
-    <div class="panel-body">
+<div class="panel-body">
+      <form class="form-horizontal" method="get">
         <div class="form-group">
-            <label class="col-sm-2 control-label">Full Name</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" placeholder="Full Name" data-ng-model="user.fullname" required >    
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Username</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" placeholder="Username" data-ng-model="user.username" required >    
-            </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-2 control-label">Password</label>
-          <div class="col-sm-8">
-            <input type="password" class="form-control" name="password" data-ng-model="user.password" required >   
+          <label class="col-sm-2 control-label">Full Name</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" placeholder="Full Name" ng-model="user.fullname" required />                        
           </div>
         </div>
-        <!-- <div class="form-group">
-          <label class="col-sm-2 control-label">Confirm Password</label>
-          <div class="col-sm-8">
-            <input type="password" class="form-control" name="confirm_password" required data-ng-model="user.confirm_password" ui-validate=" '$value==password' " ui-validate-watch=" 'password' ">
-            <span ng-show='form.confirm_password.$error.validator'>Passwords do not match!</span>
-          </div>
-        </div> -->
+        <div class="line line-dashed b-b line-lg pull-in"></div>
         <div class="form-group">
-            <label class="col-sm-2 control-label">Email</label>
-            <div class="col-sm-8">
-              <input type="email" class="form-control" placeholder="Email" data-ng-model="user.email" required >    
-            </div>
+          <label class="col-sm-2 control-label">Email</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" placeholder="Full Name" ng-model="user.email" required />                        
+          </div>
         </div>
+        <div class="line line-dashed b-b line-lg pull-in"></div>
         <div class="form-group">
             <label class="col-sm-2 control-label">Birthday</label>
-            <div class="col-sm-8">
+            <div class="col-sm-10">
               <input type="text" class="form-control" placeholder="YYYY-MM-DD" data-ng-model="user.birthday" ng-pattern="/[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])$/" required >    
             </div>
         </div>
-        <!-- <div class="form-group">
-            <label class="col-sm-2 control-label">Phone</label>
-            <div class="col-sm-8">
-                <input type="text" class="form-control" placeholder="(XXX) XXXX XXX" data-ng-model="user.phone" ng-pattern="/\([0-9]{3}\) ([0-9]{3}) ([0-9]{3})$/" required >
-            </div>
-        </div> -->
+        <div class="line line-dashed b-b line-lg pull-in"></div>
         <div class="form-group">
             <label class="col-sm-2 control-label">Address</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" placeholder="Address" ng-model="user.address" required >    
+            <div class="col-sm-10">
+              <input type="text" class="form-control" placeholder="Address" ng-model="user.address" >    
             </div>
         </div>
+        <div class="line line-dashed b-b line-lg pull-in"></div>
         <div class="form-group">
             <label class="col-sm-2 control-label">Address 2</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" placeholder="Apt" ng-model="user.address2" required >    
+            <div class="col-sm-10">
+              <input type="text" class="form-control" placeholder="Apt" ng-model="user.address2">    
             </div>
-        </div>
+        </div>                  
+        <div class="line line-dashed b-b line-lg pull-in"></div>
         <div class="form-group">
             <label class="col-sm-2 control-label">City</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" placeholder="City" ng-model="user.city" required >    
+            <div class="col-sm-10">
+              <input type="text" class="form-control" placeholder="City" ng-model="user.city" >    
             </div>
         </div>
+
+        <div class="line line-dashed b-b line-lg pull-in"></div>
         <div class="form-group">
           <label class="col-sm-2 control-label">State</label>
           <div class="col-sm-10">
@@ -140,6 +116,7 @@
             </select>
           </div>
         </div>
+        <div class="line line-dashed b-b line-lg pull-in"></div>
         <div class="form-group">
           <label class="col-sm-2 control-label">Country</label>
           <div class="col-sm-10">
@@ -149,31 +126,28 @@
             </select>
           </div>
         </div>
+        <div class="line line-dashed b-b line-lg pull-in"></div>
         <div class="form-group">
-            <label class="col-sm-2 control-label">Company</label>
-            <div class="col-sm-8">
+            <label class="col-sm-2 control-label">Employer</label>
+            <div class="col-sm-10">
               <input type="text" class="form-control" placeholder="Company" ng-model="user.company" required >    
             </div>
         </div>
+        <div class="line line-dashed b-b line-lg pull-in"></div>
         <div class="form-group">
-            <label class="col-sm-2 control-label">Position</label>
+            <label class="col-sm-2 control-label">Job Title</label>
             <div class="col-sm-8">
               <input type="text" class="form-control" placeholder="Position" ng-model="user.position" required >    
             </div>
         </div>
-        <div class="checkbox">
-          <label class="col-sm-2 i-checks"></label>
-          <div class="col-sm-8">
-            <input type="checkbox" ng-model="agree" required><i></i> I agree to the <a href class="text-info">Terms of Service</a>
+
+
+        
+        <div class="line line-dashed b-b line-lg pull-in"></div>
+        <div class="form-group">
+          <div class="col-sm-4 col-sm-offset-2">
+            <button type="submit" class="btn btn-primary" ng-click="createApplicant(user.fullname, user.email, user.birthday, user.address, user.address2, user.city, user.state, user.country, user.company, user.position)">Submit</button>
           </div>
         </div>
-      </div>
-      <footer class="panel-footer text-right bg-light lter">
-        <button type="submit" class="btn btn-success" ng-disabled="!user.password">Sign Up</button>
-      </footer>
+      </form>
     </div>
-    </form>
-  </div>
-</div>
-    
-        

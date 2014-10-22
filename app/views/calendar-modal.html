@@ -1,0 +1,59 @@
+<div class="modal-header">
+    <h3 class="modal-title">Create Your Event</h3>
+</div>
+<div class="modal-body">
+    <form name="newThreadForm" class="form-horizontal m-t-lg">
+     <!--  <div class="col-md-6">
+            <label>Start Date</label>
+            <p class="input-group">
+              <input type="date" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-model="event.start" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
+          </div>
+      <div class="col-md-6">
+            <label>End Date</label>
+            {{dateOptions}}
+            <p class="input-group">
+              <input type="date" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-model="event.end"/>
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
+          </div> -->
+      <div class="form-group">
+        <label class="col-lg-2 control-label">Start Date</label>
+        <div class="col-lg-8">
+          <input type="date" class="form-control" ng-model="event.start" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-2 control-label">End Date</label>
+        <div class="col-lg-8">
+          <input type="date" class="form-control" ng-model="event.end" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-2 control-label">Event Title</label>
+        <div class="col-lg-8">
+          <input type="text" class="form-control" ng-model="event.title" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-2 control-label">Event Text</label>
+        <div class="col-lg-8">
+          <textarea type="text" rows="5" class="form-control" ng-model="event.description"></textarea>
+        </div>
+      </div>
+<!--       <div class="form-group">
+        <div class="col-lg-8 col-lg-offset-2">
+          <button ng-disabled="newThreadForm.$invalid" ng-click="createThread(user.username, newThreadTitle, newThreadText)" class="btn btn-sm btn-danger w-xs font-bold">Add Thread</button>
+        </div>
+      </div> -->
+    </form>
+</div>
+<div class="modal-footer">                  
+    <button class="btn btn-default" ng-click="cancel()">Cancel</button>
+    <button class="btn btn-primary" ng-click="ok(event)">OK</button>
+</div>

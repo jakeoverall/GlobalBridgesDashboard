@@ -1,23 +1,34 @@
 <div class="bg-light lter b-b wrapper-md">
-  <h1 class="m-n font-thin h3">{{ task.title }}</h1>
+  <h1 class="m-n font-thin h3">{{task.title}}</h1>
 </div>
-<div class="wrapper-md">
-  <div class="row">
+<div>
+  <div class="wrapper">
+  	<div class="row">
     <div class="col-sm-11">
-    	<div class="panel">
-          <div class="wrapper-lg">
-            <h2 class="m-t-none">{{ task.title }}</h2>
-            <div>
-              <p>{{ task.text }}</p>
-            </div>
-            <div class="line line-lg b-b b-light"></div>
-            <div class="text-muted">
-              <i class="fa fa-user text-muted"></i> by <a href class="m-r-sm">{{ task.username }}</a>
-              <!-- <a href class="m-l-sm"><i class="fa fa-comment-o text-muted"></i> 2 comments</a> -->
-            </div>
-          </div>
+    <form name="newTaskForm" class="form-horizontal m-t-lg">
+      <div class="form-group">
+        <label class="col-lg-2 control-label">Task Title</label>
+        <div class="col-lg-8">
+          <input type="text" class="form-control" ng-model="task.title">
         </div>
-	<h4 class="m-t-lg m-b">Comments</h4>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-2 control-label">Task Text</label>
+        <div class="col-lg-8">
+          <textarea type="text" rows="5" class="form-control" ng-model="task.text"></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-8 col-lg-offset-2">
+          <button ng-disabled="newTaskForm.$invalid" ng-click="editTask(task.title, task.text)" class="btn btn-sm btn-danger w-xs font-bold">Edit Task</button>
+        </div>
+      </div>
+      <!-- <div class="form-group">
+        <div class="col-lg-8 col-lg-offset-2">
+          <button ng-disabled="newTaskForm.$invalid" ng-click="removeTask(task.title, task.text)" class="btn btn-sm btn-danger w-xs font-bold">Remove Task</button>
+        </div>
+      </div> -->
+    </form>
 	      <div ng-repeat="comment in comments">
 	        <div>
 	          <a class="pull-left thumb-sm">
@@ -41,6 +52,7 @@
 	          <button ng-disabled="newCommentForm.$invalid" ng-click="createComment(user.username, newCommentText)" class="btn btn-success">Submit comment</button>
 	        </div>
 	      </form>
-	    </div>
-	</div>
+	   </div>
+    </div>
+  </div>
 </div>
