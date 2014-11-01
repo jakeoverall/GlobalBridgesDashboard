@@ -137,7 +137,7 @@
     </ul>
   </li>
   <li>
-    <a href class="auto">
+    <a ui-sref="secure.checkout" class="auto">
       <span class="pull-right text-muted">
         <i class="fa fa-fw fa-angle-right text"></i>
         <i class="fa fa-fw fa-angle-down text-active"></i>
@@ -145,26 +145,27 @@
       <i class="glyphicon glyphicon-credit-card icon"></i>
       <span id="purchase" class="font-bold">Pay Club Dues</span>
     </a>
-    <script>
-      var handler = StripeCheckout.configure({
-        key: 'pk_test_ihN5R3MvYqpVOF2yDdgvDz4U',
-        image: 'img/a0.jpg',
-        token: function(token) {
-          // Use the token to create the charge with a server-side script.
-          // You can access the token ID with `token.id`
-        }
-      });
+   <!-- // <script>
+    //   var handler = Stripe.Checkout.configure({
+    //     key: 'pk_test_ihN5R3MvYqpVOF2yDdgvDz4U',
+    //     image: 'img/a0.jpg',
+    //     token: function(token) {
+    //       // Use the token to create the charge with a server-side script.
+    //       // You can access the token ID with `token.id`
+    //     }
+    //   });
 
-      document.getElementById('purchase').addEventListener('click', function(e) {
-        // Open Checkout with further options
-        handler.open({
-          name: 'Global Bridges Rotary Club',
-          description: 'Quarterly Dues ($100.00)',
-          amount: 10000
-        });
-        e.preventDefault();
-      });
-    </script>
+    //   document.getElementById('purchase').addEventListener('click', function(e) {
+    //     e.preventDefault();
+    //     // Open Checkout with further options
+    //     handler.open({
+    //       name: 'Global Bridges Rotary Club',
+    //       description: 'Quarterly Dues ($100.00)',
+    //       amount: 10000
+    //     });
+        
+    //   });
+    // </script> -->
   </li>
   <li>
     <a href class="auto">      

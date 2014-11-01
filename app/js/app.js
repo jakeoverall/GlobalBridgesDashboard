@@ -10,12 +10,13 @@ var app = angular.module('app', [
     'ngRoute', 
     'ui.bootstrap',
     'ui.tree',
-    'ngImgCrop',
+    //'ngImgCrop',
     'ui.load',
     'ui.jq',
     'ui.validate',
     'pascalprecht.translate',
     'firebase',
+    'angularPayments',
     // Filters
     'app.filters',
     'app.filters.url',
@@ -42,6 +43,7 @@ var app = angular.module('app', [
     'app.controllers.committee',
     'app.controllers.imagecrop',
     'app.controllers.eventmodal',
+    'app.controllers.stripe',
     // 'app.controllers.calendar',
     // Services
     'app.services.environment',
@@ -55,7 +57,8 @@ var app = angular.module('app', [
     'app.services.calendar',
     'app.services.signup',
     'app.services.committees',
-    'app.services.projects'
+    'app.services.projects',
+    'app.services.stripe'
   ])
 .run(
   [          '$rootScope', '$state', '$stateParams',
@@ -68,7 +71,10 @@ var app = angular.module('app', [
 .config(
   [          '$stateProvider', '$urlRouterProvider', '$controllerProvider', '$compileProvider', '$filterProvider', '$provide',
     function ($stateProvider,   $urlRouterProvider,   $controllerProvider,   $compileProvider,   $filterProvider, $provide) {
-        
+
+        //Stripe Setup
+        window.Stripe.setPublishableKey('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
+
         // lazy controller, directive and service
         app.controller = $controllerProvider.register;
         app.directive  = $compileProvider.directive;
@@ -307,6 +313,11 @@ var app = angular.module('app', [
                     return CommitteesService.getTasks($stateParams.committeeId);
                   }
                 }
+            })
+            .state('secure.checkout', {
+              url: '/checkout',
+              templateUrl: 'views/stripe-checkout.html',
+              controller: 'StripeCtrl'
             })
             .state('secure.projects', {
                 url: '/projects',

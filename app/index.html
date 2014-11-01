@@ -11,8 +11,9 @@
   <link href="styles/icomoon.css" media="screen" rel="stylesheet" type="text/css">
   <link href="styles/slider-settings.css" media="screen" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="bower_components/angular-ui-tree/dist/angular-ui-tree.min.css" />
-  <link rel="stylesheet" href="bower_components/ngImgCrop/compile/unminified/ng-img-crop.css" />
+<!--   <link rel="stylesheet" href="bower_components/ngImgCrop/compile/unminified/ng-img-crop.css" /> -->
   <link rel="stylesheet" href="styles/simple-line-icons.css" type="text/css" />
+    <link rel="stylesheet" href="styles/stripe.css" type="text/css" />
   <link rel="stylesheet" href="styles/font.css" type="text/css" />
   <link rel="stylesheet" href="styles/app.css" type="text/css" />
 </head>
@@ -41,8 +42,9 @@
   <script src="js/angular/ui-jq.js"></script>
   <script src="js/angular/ui-validate.js"></script>
   <script src="js/angular/ui-bootstrap-tpls.min.js"></script>
-  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-  <script src="https://checkout.stripe.com/checkout.js"></script>
+  <!-- Stripe -->
+  <script src="//js.stripe.com/v2/"></script>
+  <script src="bower_components/angular-payments/lib/angular-payments.min.js"></script>
 
   <!-- Libs -->
   <script src="js/libs/moment.min.js"></script>
@@ -56,7 +58,7 @@
   <script src="bower_components/firebase-simple-login/firebase-simple-login.js"></script>
   <script src="bower_components/toastr/toastr.min.js"></script>
   <script src="bower_components/angular-ui-tree/dist/angular-ui-tree.js"></script>
-  <script src="bower_components/ngImgCrop/compile/unminified/ng-img-crop.js"></script>
+  <!-- <script src="bower_components/ngImgCrop/compile/unminified/ng-img-crop.js"></script> -->
   <script src="scripts/controllers/projects.js"></script>
   <script src="scripts/controllers/project.js"></script>
   <script src="scripts/controllers/committees.js"></script>
@@ -65,6 +67,8 @@
   <script src="scripts/controllers/imagecrop.js"></script>
   <script src="scripts/services/project-service.js"></script>
   <script src="scripts/controllers/event-modal.js"></script>
+  <script src="scripts/services/stripeservice.js"></script>
+  <script src="scripts/controllers/stripe.js"></script>
   <!-- endbuild -->
   
   <!-- App -->
